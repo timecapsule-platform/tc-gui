@@ -1,0 +1,16 @@
+{
+  "name": "tc-gui",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Front-end application for the Time Capsule platform (Angular 1.x )",
+  "repository": "https://github.com/timecapsule-platform/tc-gui",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "http-server": "^14.0.0"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "http-server ./app -a localhost -p 8000 -c-1"
+  }
+}
