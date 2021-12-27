@@ -1,0 +1,39 @@
+<div class="items-select-box">
+        
+    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'> 
+        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'> 
+    </div>
+    
+    <div class="client-selector-title">
+        <div class="client-selector-title-icon float-left"><img class="img4x" src="assets/images/client-selector-icon.svg"/></div>
+        <div class="client-selector-title-text float-left">Επιλογή Πελάτη</div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear padding-bottom"></div><!-- CLEAR -->
+
+
+    
+        <div class="items-select-box-search">
+            <div class="items-select-box-search-icon">
+                <img class="items-select-box-search-icon-img" src="assets/images/searchIconDark.svg"/>
+            </div>
+            <div class="items-select-box-search-input"><input type="text" ng-model="search" /></div>
+            <div class="clear"> </div>
+        </div>
+        <div class="items-select-box-content">
+             
+            <div class="client-selector-item" 
+                 ng-repeat="item in dataset |  filter: search track by $index"
+                 ng-click="selectItem(item)">
+                <div class="client-selector-item-icon float-left"><img class="img3x"src="assets/images/personDefault.svg"/></div>
+                <div class="client-selector-item-text float-left">
+                    <div class="client-selector-item-name">{{item.name}}</div>
+                    <div class="client-selector-item-address">{{item.address}}</div>
+                </div>
+                <div class="clear"> </div>
+            </div>
+        </div>
+
+    
+</div>

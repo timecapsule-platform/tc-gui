@@ -1,0 +1,84 @@
+<div class="popup">
+     
+    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'> 
+        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'> 
+    </div>
+    
+    <div class="popup-title" ng-show="!message.exists()">
+        <div class='popup-header'>Voyage Details</div>
+    </div>
+
+    <loader ng-show="isLoading.delete"></loader>
+
+    
+    <div class="popup-content" style="min-width:50em;" ng-show="!isLoading.delete && !message.exists()">
+        
+        <div class="space-top-bottom"> </div>
+        
+                <div class="cargo-voyage">
+                    <div class="small-list-item-image inline"> 
+                        <img class="img1x inline-top" src="assets/images/circle-cyan.svg"/> 
+                    </div>
+                    {{ item.departure.value }}  &rarr;  {{ item.arrival.value }}
+                </div>
+                <div class="cargo-ship" ng-show="item.ship">
+                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/ship.svg" /></div>
+                    <span class="cargo-result-subtitle space-left">Ship:</span> {{ item.ship.value }} 
+                </div>
+                <div class="cargo-place">
+                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/anchor.svg" /></div>
+                    <span class="space-left" ng-show="item.departure"> 
+                        <span class="cargo-result-subtitle">Departure: </span> {{ item.departure.value }}  
+                    </span>
+                    <span ng-show="item.dateDeparture"> 
+                        <span class="cargo-result-subtitle">On: </span>   
+                        {{ item.dateDeparture.value | amDateFormat: 'DD MMMM YYYY' }} 
+                    </span>
+                    <span class="space-left" ng-show="item.arrival"> 
+                        <span class="cargo-result-subtitle">Arrival: </span> {{ item.arrival.value }}  
+                    </span>
+                    <span ng-show="item.dateArrival"> 
+                        <span class="cargo-result-subtitle">On: </span>   
+                        {{ item.dateArrival.value | amDateFormat: 'DD MMMM YYYY' }} 
+                    </span>
+                </div>
+                <div ng-show="item.category" class="space-top"> <b>Category: </b> {{item.category.value}} </div>
+                <div ng-show="item.description" class="space-top">  <b>Description: </b>  {{item.description.value}} </div> 
+                <div ng-show="item.quantityValue" class="space-top">  
+                    <b>Quantity: </b>  {{item.quantityValue.value}}  {{item.quantityUnit.value}}
+                </div> 
+               
+        
+                <div class="space-top-bottom"></div>
+                 
+                <div id="plants-map" ng-if="mapDisplay">
+                    <div class="small-list-title">Map</div>
+                    <div class="space-top-bottom"></div>
+                    <div class="small-list-content">
+                         <div map-lazy-load="https://maps.google.com/maps/api/js" class="no-animate"
+                  map-lazy-load-params="{{googleMapsUrl}}">
+                            <ng-map scrollwheel="false" center="35.487511, -1.782603" zoom="2"> 
+                              
+                            </ng-map>
+                        </div>
+                        
+                    </div>
+                </div>
+         
+       
+        <div class="clear"> </div>
+        
+        <div class="space-top-bottom"> </div>
+        
+        <div class="popup-buttons">
+            <div class="popup-button-cancel" ng-click="closeThisDialog()">Cancel</div>
+        </div>
+        
+    </div> <!-- end of popup content -->
+    
+    <popup-message type="error" message="message.text.error" close="closeThisDialog" ng-show="message.isError()">
+    </popup-message> 
+    <popup-message type="success" message="message.text.success" close="closeThisDialog" ng-show="message.isSuccess()">
+    </popup-message> 
+     
+</div> <!-- end of popup -->

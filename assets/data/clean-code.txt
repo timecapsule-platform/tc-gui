@@ -1,0 +1,32 @@
+$scope.itemExists = function(item)
+         {
+             for(var i=0;i<$scope.clean.length;i++)
+             {
+                 if($scope.clean[i].name == item.name)
+                 {
+                     return true;
+                 }
+             }
+             return false;
+         }
+         
+         $scope.cleanData = function()
+         {
+             $scope.clean = [];
+             
+             for(var i=0;i<$scope.items.length;i++)
+             {
+                 if(!$scope.itemExists($scope.items[i]))
+                 {
+                     $scope.clean.push($scope.items[i]);
+                 }
+             }
+             
+             console.log($scope.clean);
+             
+             var url = 'data:application/json;charset=utf8,' + encodeURIComponent(JSON.stringify($scope.clean));
+             window.open(url, '_blank');
+             window.focus();
+             
+             
+         }

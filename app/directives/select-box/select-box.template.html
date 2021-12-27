@@ -1,0 +1,7 @@
+<div class="selector-container float-left" ng-click="showDatasetPopup()">
+    <div class="selector">
+        <div class="selector-title" ng-if="title">{{ title }}</div>
+        <div class="selector-box" ng-show="isSelected()"> {{ selected.name }} </div>
+        <div class="selector-box" ng-show="!isSelected()"> {{ boxText}} </div>
+    </div>
+</div>

@@ -1,0 +1,311 @@
+<div class="popup">
+     
+    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'> 
+        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'> 
+    </div>
+    
+    <div class="popup-title" ng-show="!message.exists()">
+        <div class='popup-header'>Filters</div>
+    </div>
+
+    <loader ng-show="isLoading.delete"></loader>
+
+    
+    <div class="popup-content" ng-show="!isLoading.delete && !message.exists()">
+        
+        <div class="space-top-bottom"> </div>
+        
+      
+        
+        <div id="query-wizard">
+            
+            
+            
+            
+            <div class="inline-top">
+                
+                <div class="data-list-title">Make a selection from below:</div>
+                
+                <div id="query-wizard-filters" class="query-wizard-panel align-right">
+                    <div class="space-bottom" ng-repeat="item in query.select.filters">
+                        <div class="inline">{{item.text}}</div>
+                        <div class="query-var inline"  ng-click="querySelectFilter(item)" ng-class="item.bg" >
+                            <div class="query-var-icon inline-top">
+                                <img class="img1x" ng-src="assets/images/{{item.icon}}"/>
+                            </div>
+                            <div class="inline-top">{{item.name}}</div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            
+            <div class="inline-top wizard-margin"></div>
+            
+            <div class="inline-top query-wizard-data-list">
+                
+                 
+                
+                <!-------------------------------- PLANT SPECIES -------------------------------------------------->
+
+                <div class="data-list query-wizard-data-list" ng-show="query.currentFilter.name == 'Plant Species'">
+            
+                    <div class="data-list-title">{{query.currentFilter.name}}</div>
+
+                    <search-box  search-text="search.filter" search-label="Search {{query.currentFilter.name}}"></search-box>
+
+                    <div class="clear"> </div>
+
+                    <div class="data-list-content">
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFilterDataSelected($item) }" 
+                             ng-repeat="$item in data.plants | orderBy: 'name' track by $index"
+                             ng-click="queryAddFilterData($item)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x"  ng-src="assets/images/{{query.currentFilter.icon}}"/>
+                            </div>
+                            <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                            <div class="clear"> </div> 
+                        </div>
+
+                    </div>    
+
+                </div> <!-- end of data list -->
+                
+                
+                
+                <!-------------------------------- DRUG COMPONENTS -------------------------------------------------->
+                
+                <div class="data-list query-wizard-data-list" ng-show="query.currentFilter.name == 'Drug Component'">
+            
+                    <div class="data-list-title">{{query.currentFilter.name}}</div>
+
+                    <search-box  search-text="search.filter" search-label="Search {{query.currentFilter.name}}"></search-box>
+
+                    <div class="clear"> </div>
+
+                    <div class="data-list-content">
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFilterDataSelected($item) }" 
+                             ng-repeat="$item in data.drugs | orderBy: 'name' track by $index"
+                             ng-click="queryAddFilterData($item)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x"  ng-src="assets/images/{{query.currentFilter.icon}}"/>
+                            </div>
+                            <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                            <div class="clear"> </div> 
+                        </div>
+
+                    </div>    
+
+                </div> <!-- end of data list -->
+                
+                
+                <!-------------------------------- LANGUAGE -------------------------------------------------->
+                
+                <div class="data-list query-wizard-data-list" ng-show="query.currentFilter.name == 'Language'">
+            
+                    <div class="data-list-title">{{query.currentFilter.name}}</div>
+
+                    <search-box  search-text="search.filter" search-label="Search {{query.currentFilter.name}}"></search-box>
+
+                    <div class="clear"> </div>
+
+                    <div class="data-list-content">
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFilterDataSelected($item) }" 
+                             ng-repeat="$item in data.languages | orderBy: 'name' track by $index"
+                             ng-click="queryAddFilterData($item)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x"  ng-src="assets/images/{{query.currentFilter.icon}}"/>
+                            </div>
+                            <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                            <div class="clear"> </div> 
+                        </div>
+
+                    </div>    
+
+                </div> <!-- end of data list -->
+                
+                
+                <!-------------------------------- Location -------------------------------------------------->
+                
+                <div class="data-list query-wizard-data-list" ng-show="query.currentFilter.name == 'Location'">
+            
+                    <div class="data-list-title">{{query.currentFilter.name}}</div>
+
+                    <search-box  search-text="search.filter" search-label="Search {{query.currentFilter.name}}"></search-box>
+
+                    <div class="clear"> </div>
+
+                    <div class="data-list-content">
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFilterDataSelected($item) }" 
+                             ng-repeat="$item in data.locations | orderBy: 'name' track by $index"
+                             ng-click="queryAddFilterData($item)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x"  ng-src="assets/images/{{query.currentFilter.icon}}"/>
+                            </div>
+                            <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                            <div class="clear"> </div> 
+                        </div>
+
+                    </div>    
+
+                </div> <!-- end of data list -->
+                
+                
+                
+                <!-------------------------------- Publication Location -------------------------------------------------->
+                
+                <div class="data-list query-wizard-data-list" ng-show="query.currentFilter.name == 'Publication Location'">
+            
+                    <div class="data-list-title">{{query.currentFilter.name}}</div>
+
+                    <search-box  search-text="search.filter" search-label="Search {{query.currentFilter.name}}"></search-box>
+
+                    <div class="clear"> </div>
+
+                    <div class="data-list-content">
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFilterDataSelected($item) }" 
+                             ng-repeat="$item in data.publicationLocations | orderBy: 'name' track by $index"
+                             ng-click="queryAddFilterData($item)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x"  ng-src="assets/images/{{query.currentFilter.icon}}"/>
+                            </div>
+                            <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                            <div class="clear"> </div> 
+                        </div>
+
+                    </div>    
+
+                </div> <!-- end of data list -->
+                
+                
+                <!-------------------------------- REFERENCE SOURCES -------------------------------------------------->
+                
+                <div class="data-list query-wizard-data-list" ng-show="query.currentFilter.name == 'Reference Source'">
+            
+                    <div class="data-list-title">{{query.currentFilter.name}}</div>
+
+                    <search-box  search-text="search.filter" search-label="Search {{query.currentFilter.name}}"></search-box>
+
+                    <div class="clear"> </div>
+
+                    <div class="data-list-content">
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFilterDataSelected($item) }" 
+                             ng-repeat="$item in data.sources | orderBy: 'name' track by $index"
+                             ng-click="queryAddFilterData($item)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x"  ng-src="assets/images/{{query.currentFilter.icon}}"/>
+                            </div>
+                            <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                            <div class="clear"> </div> 
+                        </div>
+
+                    </div>    
+
+                </div> <!-- end of data list -->
+                
+                
+                
+                <!-------------------------------- PLANT FAMILIES -------------------------------------------------->
+                
+                <div class="data-list query-wizard-data-list" ng-show="query.currentFilter.name == 'Plant Family'">
+            
+                    <div class="data-list-title">{{query.currentFilter.name}}</div>
+
+                    <search-box  search-text="search.filter" search-label="Search {{query.currentFilter.name}}"></search-box>
+
+                    <div class="clear"> </div>
+
+                    <div class="data-list-content">
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFilterDataSelected($item) }" 
+                             ng-repeat="$item in data.plantFamilies | orderBy: 'name' track by $index"
+                             ng-click="queryAddFilterData($item)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x"  ng-src="assets/images/{{query.currentFilter.icon}}"/>
+                            </div>
+                            <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                            <div class="clear"> </div> 
+                        </div>
+
+                    </div>    
+
+                </div> <!-- end of data list -->
+                
+                
+                <!-------------------------------- PLANT PARTS -------------------------------------------------->
+                
+                <div class="data-list query-wizard-data-list" ng-show="query.currentFilter.name == 'Plant Part'">
+            
+                    <div class="data-list-title">{{query.currentFilter.name}}</div>
+
+                    <search-box  search-text="search.filter" search-label="Search {{query.currentFilter.name}}"></search-box>
+
+                    <div class="clear"> </div>
+
+                    <div class="data-list-content">
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFilterDataSelected($item) }" 
+                             ng-repeat="$item in data.plantParts | orderBy: 'name' track by $index"
+                             ng-click="queryAddFilterData($item)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x"  ng-src="assets/images/{{query.currentFilter.icon}}"/>
+                            </div>
+                            <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                            <div class="clear"> </div> 
+                        </div>
+
+                    </div>    
+
+                </div> <!-- end of data list -->
+                
+                
+             
+                <!-------------------------------- DATE PERIOD -------------------------------------------------->
+                
+                <div class="data-list query-wizard-data-list" ng-show="query.currentFilter.name == 'Date Period'">
+                    <div class="data-list-title">{{query.currentFilter.name}}</div>
+                    <rzslider
+                        rz-slider-model="data.datePeriod.min"
+                        rz-slider-high="data.datePeriod.max"
+                        rz-slider-options="data.datePeriod.options">
+                    </rzslider>
+                    {{query.currentFilter.data.datePeriod.min}} {{query.currentFilter.data.datePeriod.max}} 
+                    {{query.currentFilter.data.datePeriod.options.floor}}
+                    <div class="center" style="margin:2em 0em 0em 0em;" >
+                         <div class="query-btn inline" ng-click="queryAddFilterDatePeriodData()">
+                            <div class="query-btn-text inline-top">Add Date Period Filter</div>
+                        </div>
+                    </div>
+                      
+                </div> <!-- end of data list -->
+                
+                
+               
+                 
+                
+            </div>
+            
+        </div> <!-- end of query wizard -->
+         
+       
+        <div class="clear"> </div>
+        
+        <div class="space-top-bottom"> </div>
+        
+        <div class="popup-buttons">
+            <div class="popup-button-cancel" ng-click="closeThisDialog()">Cancel</div>
+        </div>
+        
+    </div> <!-- end of popup content -->
+    
+    <popup-message type="error" message="message.text.error" close="closeThisDialog" ng-show="message.isError()">
+    </popup-message> 
+    <popup-message type="success" message="message.text.success" close="closeThisDialog" ng-show="message.isSuccess()">
+    </popup-message> 
+     
+</div> <!-- end of popup -->

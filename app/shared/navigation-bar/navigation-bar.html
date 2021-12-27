@@ -1,0 +1,16 @@
+<div id="navigation" ng-controller="navigationBarController" class="ng-animate-disabled">
+
+    <span id="navigation-arrow" class="navItem">
+         <img id="navigation-arrow-img" src="assets/images/navigation-arrow.svg" alt="navigation"/>
+    </span> &nbsp;     
+    <a ui-sref="dashboard" class="navItem"> ΚΕΝΤΡΙΚΗ ΔΙΑΧΕΙΡΙΣΗ </a>
+    
+    <a ui-sref="{{page.link}}" ng-repeat="page in navPages">
+    <div ng-class="{   'navItem' : !page.current, 'navItemCurrent' : page.current}"> / {{page.name}} </div>
+    </a>
+    
+    <div class="clear"> </div><!-- CLEAR -->
+
+</div> <!-- end of navigation -->
+
+ 

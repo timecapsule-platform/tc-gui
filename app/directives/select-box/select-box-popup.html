@@ -1,0 +1,27 @@
+<div class="items-select-box">
+            
+    <div class="items-select-box-title">{{title}}</div>
+
+    <div class="clear padding-bottom"></div><!-- CLEAR -->
+
+
+    <div class="items-select-box-inner">
+
+        <div class="items-select-box-search">
+            <div class="items-select-box-search-icon">
+                <img class="items-select-box-search-icon-img" src="assets/images/searchIconDark.svg"/>
+            </div>
+            <div class="items-select-box-search-input"><input type="text" ng-model="search" /></div>
+            <div class="clear"> </div>
+        </div>
+        <div class="items-select-box-content">
+             
+            <div class="items-select-box-item" 
+                 ng-repeat="item in dataset |  filter: search track by $index"
+                 ng-click="selectItem(item)">
+                <div class="items-select-box-item-name">{{item.name}}</div>
+            </div>
+        </div>
+
+    </div>
+</div>

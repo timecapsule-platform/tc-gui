@@ -1,0 +1,59 @@
+<div id="login-wrapper" ng-controller="loginController">
+
+    
+    
+    <div class="login-loader-wrapper"  >
+        <div class="login-loader">
+            <div class="preloaderWhite" ng-show="isLoading.page">  <div></div> </div>
+        </div>
+    </div>
+ 
+	<div id="login" class="center" ng-show="!isLoading.page">
+    
+       
+            
+            <form ng-submit="signIn()">
+                <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+                <input class="display-none" type="text" name="fakeusernameremembered"/>
+                <input class="display-none" type="password" name="fakepasswordremembered"/>
+
+                <div id="login-logo"><img id="login-logo-img" src="assets/images/login-logo.svg" /></div>
+                
+                <div id="login-normal">
+                    <div id="login-username">
+                        <input type="text" ng-model="username" placeholder="Username"  />
+                    </div>
+                    <div id="login-password">
+                        <input type="password" ng-model="password" placeholder="Password" />
+                    </div>
+
+                    <div id="login-button" ng-click="signIn();"> SIGN IN </div>
+                    <input class="display-none" type="submit" />
+                </div> <!-- end of normal login -->
+                <div id="login-guest">
+                    <div id="login-guest-image"> <img id="login-guest-img" src="assets/images/guest.svg" /> </div>
+                    <div id="login-guest-text"> Guest Log in </div> 
+                    <div id="login-guest-button" ng-click="guestSignIn();"> LOG IN AS GUEST </div>
+
+                </div> <!-- end of guest login -->
+                
+            </form> 
+        
+        <div id="login-message">{{message}}</div>
+        
+        <div id="register" class="center gray">
+            If you wish to register please send us an email to: <br/> <a href="mailto:K.A.Zervanou@uu.nl">K.A.Zervanou@uu.nl.</a>
+        </div>
+            
+       
+        <div id="dashboard-logos">
+            <div id="logo-uu"><img src="assets/images/logo-uu.png"/></div>
+            <div id="logo-nwo"><img src="assets/images/logo-nwo-text.png"/></div>
+        </div>
+        
+    
+    </div> <!-- end of login -->
+    
+    
+
+</div><!-- end of login wrapper -->

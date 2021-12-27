@@ -1,0 +1,64 @@
+[ui-view].ng-leave {
+  
+  -webkit-transition:none;
+	-moz-transition:none;
+	-o-transition:none;
+	transition:none;
+}
+
+[ui-view].ng-enter{
+  
+  -webkit-transition:all .5s ease-in-out;
+	-moz-transition:all .5s ease-in-out;
+	-o-transition:all .5s ease-in-out;
+	transition:all .5s ease-in-out;
+}
+
+[ui-view].ng-enter {
+  opacity: 0;
+  
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+  
+}
+
+[ui-view].ng-leave {
+  opacity: 1;
+   
+  
+}
+
+[ui-view].ng-leave-active {
+  opacity: 0;
+   
+}
+
+/* 
+  Allow angular.js to be loaded in body, hiding cloaked elements until 
+  templates compile.  The !important is important given that there may be 
+  other selectors that are more specific or come later and might alter display.  
+ */
+[ng\:cloak], [ng-cloak], .ng-cloak {  display: none !important; }
+
+
+#login.ng-show,#login.ng-hide{ transition: none; }
+
+#menu{ transition:none; }
+#menu.ng-hide{ opacity:0; }
+
+.menu-item-icon{ transition:none;  }
+.menu-item-icon.ng-hide{ opacity:0; }
+
+.no-animation{ transition: none;  }
+
+
+.empty-result-set.ng-hide{  transition:none; }
+
+div.ng-hide{ transition:none; }
+
+
+
+ 
+

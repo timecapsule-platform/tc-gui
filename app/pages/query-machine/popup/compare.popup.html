@@ -1,0 +1,114 @@
+<div class="popup">
+     
+    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'> 
+        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'> 
+    </div>
+    
+    <div class="popup-title" ng-show="!message.exists()">
+        <div class='popup-header'>Compare</div>
+    </div>
+
+    
+
+    
+    <div class="popup-content">
+        
+        <div class="space-top-bottom"> </div>
+        
+        <div id="compare-results" class="data-table">
+        <table>
+             <tr>
+                 <th></th>
+                 <th class="center" ng-repeat="query in compare.queries track by $index">Query {{$index+1}} </th> 
+             </tr>
+             
+             <tr>
+                 <td class="bold">Name Variants</td>
+                 <td ng-repeat="query in compare.queries track by $index">
+                    <div class="small-list-item cursor" 
+                         ng-repeat="variant in query.variants track by $index"
+                         ng-click="showResource(variant,'VARIANT')"> 
+                        <div class="small-list-item-image float-left"> 
+                            <img class="small-list-item-img" src="assets/images/circle-blue.svg"/> 
+                        </div>
+                        <div class="small-list-item-name float-left max80"> {{ variant }} </div> 
+                        <div class="clear"></div>
+                    </div>
+                 </td>
+             </tr>
+            
+            <tr>
+                 <td class="bold">Reference Sources</td>
+                 <td ng-repeat="query in compare.queries track by $index">
+                    <div class="small-list-item cursor" 
+                         ng-repeat="source in query.sources track by $index"
+                         ng-click="showResource(variant,'SOURCE')"> 
+                        <div class="small-list-item-image float-left"> 
+                            <img class="small-list-item-img" src="assets/images/circle-yellow.svg"/> 
+                        </div>
+                        <div class="small-list-item-name float-left max80"> {{ source }} </div> 
+                        <div class="clear"></div>
+                    </div>
+                 </td>
+             </tr>
+            
+            <tr>
+                 <td class="bold">Produces: </td>
+                 <td ng-repeat="query in compare.queries track by $index">
+                    <div class="small-list-item cursor" 
+                         ng-repeat="pDrug in query.pDrugs track by $index"
+                         ng-click="showResource(variant,'VARIANT')"> 
+                        <div class="small-list-item-image float-left"> 
+                            <img class="small-list-item-img" src="assets/images/circle-pink.svg"/> 
+                        </div>
+                        <div class="small-list-item-name float-left max80"> {{ pDrug }} </div> 
+                        <div class="clear"></div>
+                    </div>
+                 </td>
+             </tr>
+            
+            <tr>
+                 <td class="bold">Produced By: </td>
+                 <td ng-repeat="query in compare.queries track by $index">
+                    <div class="small-list-item cursor" 
+                         ng-repeat="pPlant in query.pPlants track by $index"
+                         ng-click="showResource(variant,'VARIANT')"> 
+                        <div class="small-list-item-image float-left"> 
+                            <img class="small-list-item-img" src="assets/images/circle-green.svg"/> 
+                        </div>
+                        <div class="small-list-item-name float-left max80"> {{ pPlant }} </div> 
+                        <div class="clear"></div>
+                    </div>
+                 </td>
+             </tr>
+            
+            <tr>
+                 <td class="bold">References </td>
+                 <td ng-repeat="query in compare.queries track by $index">
+                    <div class="small-list-item cursor" 
+                         ng-repeat="reference in query.references track by $index"
+                         ng-click="showResource(variant,'SOURCE')"> 
+                        <div class="small-list-item-image float-left"> 
+                            <img class="small-list-item-img" src="assets/images/circle-brown.svg"/> 
+                        </div>
+                        <div class="small-list-item-name float-left max80"> {{ reference.lineNumber.value }} {{ reference.sourceName.value }} </div> 
+                        <div class="clear"></div>
+                    </div>
+                 </td>
+             </tr>
+             
+        </table>
+        </div>
+        
+        <div class="popup-buttons">
+            <div class="popup-button-cancel" ng-click="closeThisDialog()">OK</div>
+        </div>
+        
+    </div> <!-- end of popup content -->
+    
+    <popup-message type="error" message="message.text.error" close="closeThisDialog" ng-show="message.isError()">
+    </popup-message> 
+    <popup-message type="success" message="message.text.success" close="closeThisDialog" ng-show="message.isSuccess()">
+    </popup-message> 
+     
+</div> <!-- end of popup -->

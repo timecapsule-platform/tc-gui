@@ -1,0 +1,68 @@
+<div id="dashboard">
+     
+   
+    <div id='dashboard-overview'> 
+        
+    
+        <div class="dashboard-box inline cursor" ui-sref="plants">
+            <div class="dashboard-box-image inline"><img class="img3x" src="assets/images/menu-plants-active.svg"/></div>
+            <div class="dashboard-box-data inline">
+                <div class="dashboard-box-text">Plants</div>
+                <div class="dashboard-box-number">{{ count.plants }}</div>
+            </div>
+            
+        </div> <!-- end of dashboard box -->
+        
+        <div class="dashboard-box inline cursor" ui-sref="drugs">
+            <div class="dashboard-box-image inline"><img class="img3x" src="assets/images/menu-drugs-active.svg"/></div>
+            <div class="dashboard-box-data inline">
+                <div class="dashboard-box-text">Drug Components</div>
+                <div class="dashboard-box-number">{{ count.drugs }}</div>
+            </div>
+        </div> <!-- end of dashboard box -->
+        
+        <div class="dashboard-box inline cursor" ui-sref="sources">
+            <div class="dashboard-box-image inline"><img class="img3x" src="assets/images/menu-sources-active.svg"/></div>
+            <div class="dashboard-box-data inline">
+                <div class="dashboard-box-text">Reference Sources</div>
+                <div class="dashboard-box-number">{{ count.sources }}</div>
+            </div>
+        </div> <!-- end of dashboard box -->
+        
+        <div class="space-top-bottom"></div>
+         
+        <div class="dashboard-login-box inline cursor" ng-click="showHelp()">
+             <div class="dashboard-box-image float-left"><img class="img3x" src="assets/images/help-blue.svg"/></div>
+             <div class="dashboard-login-box-text">Need Help ?</div>
+             <div class="dashboard-login-box-subtext">View the help topics.</div>
+             <div class="dashboard-login-box-button">Show help topics</div>
+        </div> <!-- end of dashboard box -->
+        
+        <div class="dashboard-query-box inline">
+            <div class="dashboard-query-box-image inline">
+                <img class="img3x" src="assets/images/menu-query-machine-active.svg"/>
+            </div>
+            <div class="dashboard-query-box-data inline">
+                <div class="dashboard-query-box-text">Retrieve Information From The Database</div>
+                <div class="dashboard-query-box-subtext"> 
+                    Create customized queries to retrieve information of interest 
+                    from the database.
+                </div>
+                <div class="dashboard-query-box-button cursor" ui-sref="query-machine">Start Querying</div>
+            </div>
+        </div> <!-- end of dashboard box -->
+        
+        
+	 
+    </div> <!-- end of dashboard-overview -->
+        	
+    <div class='clear'> </div> <!-- CLEAR -->
+    
+    
+    <div id="dashboard-logos">
+        <div id="logo-uu"><img src="assets/images/logo-uu.png"/></div>
+        <div id="logo-nwo"><img src="assets/images/logo-nwo-text.png"/></div>
+    </div>
+    
+
+</div> <!-- end of dashboard -->

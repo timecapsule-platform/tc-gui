@@ -1,0 +1,49 @@
+<div class="popup">
+     
+    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'> 
+        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'> 
+    </div>
+    
+    <div class="popup-title" ng-show="!message.exists()">
+        <div class='popup-header'>Show me</div>
+    </div>
+
+    <loader ng-show="isLoading.delete"></loader>
+
+    
+    <div class="popup-content" ng-show="!isLoading.delete && !message.exists()">
+        
+        <div class="space-top-bottom"> </div>
+        
+      
+        
+        <div id="query-select-wizard">
+            
+            <div id="query-wizard-select" class="query-wizard-panel float-left" ng-show="query.state.select">
+                <div class="query-var space-bottom"
+                     ng-repeat="item in query.options" 
+                     ng-click="queryAddSelect(item)"
+                     ng-class="item.bg">
+                    {{item.name}}
+                </div>
+            </div>
+            
+        </div> <!-- end of query wizard -->
+         
+       
+        <div class="clear"> </div>
+        
+        <div class="space-top-bottom"> </div>
+        
+        <div class="popup-buttons">
+            <div class="popup-button-cancel" ng-click="closeThisDialog()">Cancel</div>
+        </div>
+        
+    </div> <!-- end of popup content -->
+    
+    <popup-message type="error" message="message.text.error" close="closeThisDialog" ng-show="message.isError()">
+    </popup-message> 
+    <popup-message type="success" message="message.text.success" close="closeThisDialog" ng-show="message.isSuccess()">
+    </popup-message> 
+     
+</div> <!-- end of popup -->

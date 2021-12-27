@@ -1,0 +1,378 @@
+<div id="cover-plants" class="cover"> <img class="cover-img" src="assets/images/cover-plants.svg"/></div>
+
+<div id="plants" class="ui-content-div">
+
+   
+    <div class="page-header">Naturalia</div>
+ 
+     
+    <div id="tabs">
+        <div class="tab tab-selected">Plants</div>
+        <a ui-sref="animals"> <div class="tab" >Animals</div> </a>
+        <a ui-sref="minerals"> <div class="tab" >Minerals</div> </a>
+        <div class="clear"></div>
+    </div><!-- end of tabs -->
+     
+    <div class="clear"></div> <!-- CLEAR -->
+    
+    <loader ng-show="isLoading.page"></loader>
+    
+    
+    <div class="page-content flex">
+        
+        <div class="data-list space-right flex1">
+            
+            <div class="data-list-title">Plants list</div>
+            
+            <search-box  search-text="filters.search" search-label="Search plants"></search-box>
+            
+            <div class="clear"> </div>
+            
+            <div class="data-list-content">
+                <div class="data-list-item" 
+                     ng-class=" {'data-list-item-selected': isSelected($item) }" 
+                     ng-repeat="$item in items | orderBy: 'name'  track by $index"
+                     ng-click="selectItem($item)">
+                    <div class="data-list-item-dot float-left"><img class="img1x" src="assets/images/circle-green.svg"/></div>
+                    <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                    <div class="clear"> </div> 
+                </div>
+                
+            </div>    
+
+        </div> <!-- end of data list -->
+        
+        <div class="item-info flex2">
+            
+            
+            
+            <div class="item-info-title">
+                <div class="item-info-title-image float-left">
+                    <img class="item-info-title-img" src="assets/images/info.svg" />
+                </div>
+                <div class="item-info-title-text float-left">Information</div>
+                <div class="clear"></div>
+            </div>
+            
+            <div class="info-item">
+            
+                <div ng-show="item.name">
+                    <div class="info-item-name" >{{ item.name }} </div>
+                    <div class="info-item-concept">  <b> Plant Species: </b> {{item.plantName}} </div>
+                </div>
+                
+                <loader ng-show="isLoading.dbpedia"></loader>
+                
+                <div class="dbpedia" ng-show="!isLoading.dbpedia">
+                    <div class="dbpedia-image float-left">
+                        <div ng-show="!item.thumb"> <img class="dbpedia-img" ng-src="assets/images/no-image-plant.svg" /> </div>
+                        <div ng-show="item.thumb"> <img class="dbpedia-img" ng-src="{{item.thumb}}" /> </div>
+                    </div>
+                    <div class="dbpedia-abstract flex2"> 
+                        <div ng-show="isGenusInformation && item.abstract" class="orange">( Genus only information )</div>
+                        <div ng-show="!item.abstract" class="dbpedia-empty"> No description available</div>
+                        <div ng-show="item.abstract">{{ item.abstract }} </div>
+                        <div ng-show="item.dbpediaURL" class="space-top"> 
+                            <a target="_blank" ng-href="{{ item.dbpediaURL }}"> 
+                                <span class="inline-top"> 
+                                    <img class="img2x" src="assets/images/dbpedia-logo.svg"/>
+                                </span>
+                                <span class="inline-top"> 
+                                   Resource on DBPedia
+                                </span>
+                            </a> 
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                
+                
+                 <div class="small-list" ng-show="item.images && item.images.length">
+                    <div class="small-list-title">More Images</div>
+                    <div class="small-list-content">
+                        <div class="float-left space-right" ng-repeat="image in item.images"> 
+                            <div class="small-list-item-image"> 
+                                <img  class="gallery-img"  ng-src="assets/images/snipendal-images/{{image}}"/> 
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div> <!-- end of small list -->
+                
+                
+                
+                
+                <div class="flex">
+                
+                    <div class="small-list space-right flex1">
+                        <div class="small-list-title">Name Variants</div>
+                        <div class="space-top-bottom"></div>
+                        <loader-small  ng-show="isLoading.variants"> </loader-small>
+                        <div class="small-list-content">
+                            <div class="small-list-item cursor" 
+                                 ng-repeat="variant in item.variants track by $index"
+                                 ng-click="showResource('PLANT', variant, item.plantName)"> 
+                                <div class="small-list-item-image float-left"> 
+                                    <img class="small-list-item-img" src="assets/images/circle-blue.svg"/> 
+                                </div>
+                                <div class="small-list-item-name float-left max80"> {{ variant }} </div> 
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div> <!-- end of small list -->
+
+                    <div class="small-list space-right flex1">
+                        <div class="small-list-title">Produces Drug Components</div>
+                        <div class="space-top-bottom"></div>
+                        <loader-small  ng-show="isLoading.pDrugs"> </loader-small>
+                        <div class="small-list-content">
+                            <div class="small-list-item cursor" 
+                                 ng-repeat="drug in item.drugs track by $index"
+                                 > 
+                                <div class="small-list-item-image float-left"> 
+                                    <img class="small-list-item-img" src="assets/images/circle-pink.svg"/> 
+                                </div>
+                                <div class="small-list-item-name float-left max80"> 
+                                    <div ng-click="showResource('DRUG',drug.name,drug.name)"> {{ drug.name }}</div> 
+                                     <div ng-repeat="drugVariant in drug.variants track by $index">
+                                         <div class="inline">
+                                             <img class="small-list-item-img" src="assets/images/circle-pink-light.svg"/> 
+                                         </div>
+                                         <div class="small-list-item-name inline space-left-top-05"
+                                              ng-click="showResource('DRUG',drugVariant,drug.name)"> {{ drugVariant }}</div>
+                                    </div>   
+                                </div> 
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div> <!-- end of small list -->
+
+                    <div class="small-list space-right flex1">
+                        <div class="small-list-title">Uses</div>
+                        <div class="space-top-bottom"></div>
+                        <loader-small  ng-show="isLoading.uses"> </loader-small>
+                        <div class="small-list-content">
+                            <div class="small-list-item" ng-repeat="use in item.uses track by $index"> 
+                                <div class="small-list-item-image float-left"> 
+                                    <img class="small-list-item-img" src="assets/images/circle-orange.svg"/> 
+                                </div>
+                                <div class="small-list-item-name float-left max80"> {{ use }} </div> 
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div> <!-- end of small list -->
+
+
+                    <div class="clear"> </div>
+                    
+                </div> 
+                
+                <div>
+                    <div class="small-list  flex1">
+                        <div class="small-list-title">Mentioned In Reference Sources</div>
+                        <div class="space-top-bottom"></div>
+                        <loader-small  ng-show="isLoading.sources"> </loader-small>
+                        <div class="small-list-content">
+                            <div class="small-list-item cursor" 
+                                 ng-repeat="source in item.sources track by $index"
+                                 ng-click="showResource('SOURCE', source, null)"
+                                 > 
+                                <div class="small-list-item-image float-left"> 
+                                    <img class="small-list-item-img" src="assets/images/circle-yellow.svg"/> 
+                                </div>
+                                <div class="small-list-item-name float-left max80"> {{ source }} </div> 
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div> <!-- end of small list -->
+                </div>
+                 
+                
+                <div id="plants-map" ng-init="clearMarkers();clearSourceMarkers();">
+                    <div class="small-list-title">Map</div>
+                    <div class="space-top-bottom"></div>
+                    <div class="small-list-content">
+                         <div map-lazy-load="https://maps.google.com/maps/api/js" class="no-animate"
+                  map-lazy-load-params="{{googleMapsUrl}}">
+                            <ng-map scrollwheel="false" center="35.487511, -1.782603" zoom="2"> </ng-map>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="map-pointers">
+                    <div class="map-pointer inline-top">
+                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-grows.svg" /></div>
+                        <div class="map-pointer-text inline-top"> Natural Distribution </div>
+                    </div>
+                    
+                    <div class="map-pointer inline-top">
+                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-arcaeological.svg" /></div>
+                        <div class="map-pointer-text inline-top"> Archaeological Finding </div>
+                    </div>
+                    
+                    <div class="map-pointer inline-top">
+                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-cargo.svg" /></div>
+                        <div class="map-pointer-text inline-top"> Cargo </div>
+                    </div>
+                    
+                    <div class="map-pointer inline-top">
+                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-source.svg" /></div>
+                        <div class="map-pointer-text inline-top"> Publication Location </div>
+                    </div>
+                    
+                    <div class="map-pointer inline-top">
+                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-undefined.svg" /></div>
+                        <div class="map-pointer-text inline-top"> Undefined </div>
+                    </div>
+                </div>
+ 
+                
+                <div class="space-top-bottom">
+                    <div class="small-list-title">References</div>
+                    
+                    <div class="references-total space-top-bottom" ng-show="item.referencesCount"> 
+                        <span class="small-list-title">Total:</span> 
+                        <b>{{ item.referencesCount }}</b> References
+                    </div>
+                    
+                    <div class="space-top-bottom"></div>
+                    <loader-small  ng-show="isLoading.references"> </loader-small>
+                    
+                    <div class="small-list-content">
+                       
+                        <div class="reference cursor" 
+                             ng-repeat="reference in item.references track by $index"
+                             ng-click="showResource('REFERENCE', reference.reference.value, null)">
+                            
+                            <div class="small-list-item inline"> 
+                                <div class="small-list-item-image inline"> 
+                                    <img class="small-list-item-img" src="assets/images/circle-blue.svg"/> 
+                                </div>
+                                <div class="small-title inline"> Name Variant: </div>
+                                <div class="small-list-item-name inline"> {{reference.name.value}} </div> 
+                                <div class="clear"></div>
+                            </div>
+                             
+                            
+                            <div class="small-list-item inline space-left" ng-show="reference.location"> 
+                                <div class="small-title inline"> Location: </div>
+                                <div class="small-list-item-name inline"> 
+                                    {{reference.location.value}} ({{reference.latitude.value}}, {{reference.longtitude.value}})
+                                </div> 
+                                <div class="clear"></div>
+                            </div>
+                             
+                            <div class="clear"></div>
+                            
+                            <div class="small-list-item inline" ng-show="reference.drugVariant"> 
+                               
+                                <div class="small-title inline"> Produces: </div>
+                                <div class="small-list-item-name inline"> 
+                                    {{ reference.drugVariant.value }} 
+                                     ( <div class="small-title inline"> Drug Component: </div> {{ reference.drugName.value }} )</div> 
+                                <div class="clear"></div>
+                            </div>
+                            
+                            
+                            <div class="clear"></div>
+                            
+                            <div class="small-list-item inline" ng-show="reference.specimen"> 
+                               
+                                <div class="small-title inline"> Specimen: </div>
+                                <div class="small-list-item-name inline"> {{ reference.specimen.value }} </div> 
+                                <div class="small-title inline" ng-show="reference.spLatitude && reference.spLongtitude"> 
+                                    Specimen Location: 
+                                </div>
+                                <div class="small-list-item-name inline" ng-show="reference.spLatitude && reference.spLongtitude"> 
+                                    ( {{ reference.spLatitude.value }} , {{ reference.spLongtitude.value }} ) 
+                                </div> 
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <div class="clear"></div>
+                            
+                            
+                            <div class="small-list-item inline" ng-show="reference.id"> 
+                                <div class="small-title inline"> ID: </div>
+                                <div class="small-list-item-name inline"> {{reference.id.value}} </div> 
+                                <div class="clear"></div>
+                            </div>
+                            
+                             <div class="small-list-item inline" ng-show="reference.lineNumber"> 
+                                <div class="small-title inline"> LineNo: </div>
+                                <div class="small-list-item-name inline"> {{reference.lineNumber.value}} </div> 
+                                <div class="clear"></div>
+                            </div>
+                             
+                             <div class="small-list-item inline" ng-show="reference.barcode"> 
+                                <div class="small-title inline"> Barcode: </div>
+                                <div class="small-list-item-name inline"> {{reference.barcode.value}} </div> 
+                                <div class="clear"></div>
+                            </div>
+                            
+                           <div class="small-list-item inline space-left" ng-show="reference.language"> 
+                                <div class="small-title inline"> Language: </div>
+                                <div class="small-list-item-name inline"> {{reference.language.value}} </div> 
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <div class="clear"></div>
+                            
+                            <div class="small-list-item inline" ng-show="reference.sourceName"> 
+                                <div class="small-title inline"> Reference Source: </div>
+                                <div class="small-list-item-name inline"> {{ reference.sourceName.value }} </div> 
+                                <div class="clear"></div>
+                            </div>
+                          
+                            
+                             <div class="small-list-item inline space-left" ng-show="reference.sourceLanguage"> 
+                                <div class="small-title inline"> Publication Language: </div>
+                                <div class="small-list-item-name inline"> {{ reference.sourceLanguage.value }} </div> 
+                                <div class="clear"></div>
+                            </div>
+                            
+                             <div class="small-list-item inline space-left" ng-show="reference.sourceLocation"> 
+                                <div class="small-title inline"> Publication Location: </div>
+                                <div class="small-list-item-name inline"> {{ reference.sourceLocation.value }} </div> 
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <div class="small-list-item inline space-left" ng-show="reference.sourceDate"> 
+                                <div class="small-title inline"> Publication Date: </div>
+                                <div class="small-list-item-name inline"> {{ reference.sourceDate.value }} </div> 
+                                <div class="clear"></div>
+                            </div>
+                             
+                            
+                             
+                             
+                            <div class="clear"></div>
+                           
+                            
+                        </div> <!-- end of reference (ng-repeat) -->
+                        
+                        <div class="space-top-bottom"></div>
+                        <loader-small  ng-show="isLoading.referencesAll"> </loader-small>
+                        <div class="results-more center cursor" 
+                             ng-show="!isLoading.referencesAll && item.references && item.references.length && item.referencesCount > 50" 
+                             ng-click="getAllPlantReferences(item.plantName)"
+                             >
+                        Load All
+                        </div>
+                
+                
+               
+                
+                <div class="clear"></div>
+                
+               
+            
+            
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="clear"></div>
+</div> <!-- end of plants -->

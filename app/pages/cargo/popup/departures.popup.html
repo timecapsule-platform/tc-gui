@@ -1,0 +1,78 @@
+<div class="popup">
+     
+    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'> 
+        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'> 
+    </div>
+    
+    <div class="popup-title" ng-show="!message.exists()">
+        <div class='popup-header'>Select Departure Location</div>
+    </div>
+
+    <loader ng-show="isLoading.delete"></loader>
+
+    
+    <div class="popup-content" ng-show="!isLoading.delete && !message.exists()">
+        
+        <div class="space-top-bottom"> </div>
+        
+       
+        <div>
+          
+            <div class="inline-top query-wizard-data-list">
+            
+                
+                <div class="data-list query-wizard-data-list">
+            
+                    <div class="data-list-title">Departure Locations list</div>
+
+                    <search-box  search-text="filters.departure.search" search-label="Search Departure Locations"></search-box>
+
+                    <div class="clear"> </div>
+
+                    <div class="data-list-content">
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFromDataSelected($item) }" 
+                             ng-click="setFilter('departure',null)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x" ng-src="assets/images/circle-green.svg"/>
+                            </div>
+                            <div class="data-list-item-name float-left"><b> All Departure Locations </b></div>
+                            <div class="clear"> </div> 
+                        </div>
+                        <div class="data-list-item" 
+                             ng-class=" {'data-list-item-selected': isFromDataSelected($item) }" 
+                             ng-repeat="$item in departures | orderBy: 'name' track by $index"
+                             ng-click="setFilter('departure',$item)">
+                            <div class="data-list-item-dot float-left">
+                                <img class="img1x" ng-src="assets/images/circle-green.svg"/>
+                            </div>
+                            <div class="data-list-item-name float-left">{{ $item.name }}</div>
+                            <div class="clear"> </div> 
+                        </div>
+
+                    </div>    
+
+                </div> <!-- end of data list -->
+                  
+                
+            </div>
+             
+        </div> <!-- end of query wizard -->
+         
+       
+        <div class="clear"> </div>
+        
+        <div class="space-top-bottom"> </div>
+        
+        <div class="popup-buttons">
+            <div class="popup-button-cancel" ng-click="closeThisDialog()">Cancel</div>
+        </div>
+        
+    </div> <!-- end of popup content -->
+    
+    <popup-message type="error" message="message.text.error" close="closeThisDialog" ng-show="message.isError()">
+    </popup-message> 
+    <popup-message type="success" message="message.text.success" close="closeThisDialog" ng-show="message.isSuccess()">
+    </popup-message> 
+     
+</div> <!-- end of popup -->
