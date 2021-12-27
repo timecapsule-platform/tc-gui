@@ -1,6 +1,6 @@
 angular.module("TIMECAPSULE").value("Global", {
-  api: "https://localhost/api",
-  baseURL: "https://localhost/timecapsule/",
-  ns: "ex:",
-  sparql: "https://localhost:8890/sparql?query=",
+  api: window.__env.api,
+  baseURL: window.__env.baseURL,
+  ns: window.__env.ns,
+  sparql: window.__env.sparql,
 });
