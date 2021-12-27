@@ -1,50 +1,31 @@
 (function () {
-   
-    'use strict';
+  "use strict";
 
-    angular.module('TIMECAPSULE').factory('Compare', Compare);
+  angular.module("TIMECAPSULE").factory("Compare", Compare);
 
-     Compare.$inject = ['$http','Global','ErrorHandler','QueryBuilder','QueryFactory'];
+  Compare.$inject = [
+    "$http",
+    "Global",
+    "ErrorHandler",
+    "QueryBuilder",
+    "QueryFactory",
+  ];
 
-     function Compare($http, Global, ErrorHandler, QueryBuilder, QueryFactory)
-    {
+  function Compare($http, Global, ErrorHandler, QueryBuilder, QueryFactory) {
+    var factory = {};
 
-        var factory = {};
-      
-        factory.queries = [];
-        
-        factory.Clear = Clear;
-        
-        factory.init = init;
-         
-        
-        return factory;
-        
-        
-        
-        
-        
-        function Clear()
-        {
-            
-            factory.queries = [];
- 
-        }
-        
-        
-        
-        
-        
-        function init()
-        { 
-           
-        }
-        
-        
-         
-         
-          
+    factory.queries = [];
 
+    factory.Clear = Clear;
+
+    factory.init = init;
+
+    return factory;
+
+    function Clear() {
+      factory.queries = [];
     }
- 
+
+    function init() {}
+  }
 })();

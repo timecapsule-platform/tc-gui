@@ -1,87 +1,87 @@
-<div id="cover-sources" class="cover"> <img class="cover-img" src="assets/images/cover-sources.svg"/></div>
+<div class="cover" id="cover-sources"><img class="cover-img" src="assets/images/cover-sources.svg"/></div>
 
-<div id="sources" class="ui-content-div">
+<div class="ui-content-div" id="sources">
 
     <div class="page-header">Reference Sources</div>
-    
+
     <loader ng-show="isLoading.page"></loader>
-    
-    
-    
+
+
     <div class="page-content flex">
-        
+
         <div class="data-list flex1">
-            
+
             <div class="data-list-title">Reference Sources list</div>
-            
-            <search-box  search-text="filters.search" search-label="Search reference sources"></search-box>
-            
-            <div class="clear"> </div>
-            
+
+            <search-box search-label="Search reference sources" search-text="filters.search"></search-box>
+
+            <div class="clear"></div>
+
             <div class="data-list-content">
-                <div class="data-list-item" 
-                     ng-class=" {'data-list-item-selected': isSelected($item) }" 
-                     ng-repeat="$item in items | orderBy: name |  filter: filters.search track by $index"
-                     ng-click="selectItem($item)">
-                    <div class="data-list-item-dot float-left"><img class="img1x" src="assets/images/circle-yellow.svg"/></div>
+                <div class="data-list-item"
+                     ng-class=" {'data-list-item-selected': isSelected($item) }"
+                     ng-click="selectItem($item)"
+                     ng-repeat="$item in items | orderBy: name |  filter: filters.search track by $index">
+                    <div class="data-list-item-dot float-left"><img class="img1x"
+                                                                    src="assets/images/circle-yellow.svg"/></div>
                     <div class="data-list-item-name float-left">{{ $item.name }}</div>
-                    <div class="clear"> </div> 
+                    <div class="clear"></div>
                 </div>
-                
-            </div>    
+
+            </div>
 
         </div> <!-- end of data list -->
-        
+
         <div class="item-info flex2">
-            
+
             <div class="item-info-title">
                 <div class="item-info-title-image float-left">
-                    <img class="item-info-title-img" src="assets/images/info.svg" />
+                    <img class="item-info-title-img" src="assets/images/info.svg"/>
                 </div>
                 <div class="item-info-title-text float-left">Information</div>
                 <div class="clear"></div>
             </div>
-            
-            
-            
+
+
             <div class="info-item">
-            
+
                 <div class="info-item-name">{{ item.name }}</div>
-                
+
                 <div class="dbpedia" ng-show="!isLoading.dbpedia">
                     <div class="dbpedia-image float-left">
-                         <img class="dbpedia-img" ng-src="assets/images/no-image-source.svg" />  
+                        <img class="dbpedia-img" ng-src="assets/images/no-image-source.svg"/>
                     </div>
-                    <div class="dbpedia-abstract flex2"> 
-                        <div ng-show="!source.description" class="dbpedia-empty"> No description available</div>
+                    <div class="dbpedia-abstract flex2">
+                        <div class="dbpedia-empty" ng-show="!source.description"> No description available</div>
                         <div ng-show="source.description">
-                            {{ source.description.value }} 
-                            <div> <b>Url:</b> <a target="_blank" ng-href="{{source.url.value}}">{{source.url.value}}</a></div>
+                            {{ source.description.value }}
+                            <div><b>Url:</b> <a ng-href="{{source.url.value}}" target="_blank">{{source.url.value}}</a>
+                            </div>
                         </div>
                     </div>
                     <div class="clear"></div>
                 </div>
-              
+
                 <div class="flex">
-                    
+
                     <div class="small-list flex1">
                         <div class="small-list-title">Language</div>
                         <div class="small-list-content">
-                            <div class="small-list-item" ng-show="source.language"> 
-                                <div class="small-list-item-image float-left"> 
-                                    <img class="small-list-item-img" src="assets/images/circle-red.svg"/> 
+                            <div class="small-list-item" ng-show="source.language">
+                                <div class="small-list-item-image float-left">
+                                    <img class="small-list-item-img" src="assets/images/circle-red.svg"/>
                                 </div>
-                                <div class="small-list-item-name float-left"> {{ source.language.value }} </div> 
+                                <div class="small-list-item-name float-left"> {{ source.language.value }}</div>
                                 <div class="clear"></div>
                             </div>
                         </div>
                     </div> <!-- end of small list -->
 
-                     <div class="small-list flex1">
+                    <div class="small-list flex1">
                         <div class="small-list-title">Year</div>
                         <div class="small-list-content" ng-show="source.year">
-                            <div class="small-list-item"> 
-                                <div class="small-list-item-name float-left"> {{ source.year.value }} </div> 
+                            <div class="small-list-item">
+                                <div class="small-list-item-name float-left"> {{ source.year.value }}</div>
                                 <div class="clear"></div>
                             </div>
                         </div>
@@ -91,29 +91,24 @@
                     <div class="small-list flex1">
                         <div class="small-list-title">Author(s)</div>
                         <div class="small-list-content" ng-show="source.author">
-                            <div class="small-list-item" ng-repeat="a in authors"> 
-                                <div class="small-list-item-name float-left"> {{ a.author.value }} </div> 
+                            <div class="small-list-item" ng-repeat="a in authors">
+                                <div class="small-list-item-name float-left"> {{ a.author.value }}</div>
                                 <div class="clear"></div>
                             </div>
                         </div>
                     </div> <!-- end of small list -->
-                
+
                 </div>
-                
-                <div class="clear"> </div>
-            
-               
-              
-                
-                
-            
-            
+
+                <div class="clear"></div>
+
+
             </div>
-            
+
         </div>
-        
+
     </div>
-    
+
     <div class="clear"></div>
-    
+
 </div> <!-- end of reference sources -->

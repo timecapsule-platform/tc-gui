@@ -2,8 +2,8 @@
     
     
     
-    <div class="banner-option float-right"   ng-click="toggleTimecapsules()" ng-show="!isGuest()">
-        <div class="banner-option-icon inline-top"><img class="img15x" src="assets/images/timecapsules.svg" alt="user"/></div>
+    <div class="banner-option float-right" ng-click="toggleTimecapsules()" ng-show="!isGuest()">
+        <div class="banner-option-icon inline-top"><img alt="user" class="img15x" src="assets/images/timecapsules.svg"/></div>
         <div class="banner-option-text inline-top"> MY TIME CAPSULES </div>
     </div><!-- end of banner option -->
 
@@ -13,9 +13,9 @@
         </div>
         <div id="companies-header">My time capsules</div>
         <div id="companies-content">
-            <div class="timecapsule" 
-                 ng-repeat="timecapsule in data.timecapsules track by $index" 
-                 ng-click="show(timecapsule,$index)">
+            <div class="timecapsule"
+                 ng-click="show(timecapsule,$index)"
+                 ng-repeat="timecapsule in data.timecapsules track by $index">
                 <div class="timecapsule-logo inline-top"><img class="img4x" src="assets/images/logo-circle.svg"/></div>
                 <div class="timtecapsule-content inline-top">
                     <div class="timecapsule-name">{{ timecapsule.name }}</div>
@@ -23,7 +23,7 @@
                     
                 </div>
                 <div class="timecapsule-date float-right" ng-show="timecapsule.date_created"><b>Created on:</b> 
-                    {{ timecapsule.date_created  }}</div>
+                    {{ timecapsule.date_created }}</div>
                 <div class="clear"> </div>
                 
             </div>

@@ -1,83 +1,79 @@
-<div >
-            
-            
-            
-            <div class="item-info-title">
-                <div class="item-info-title-image float-left">
-                    <img class="item-info-title-img" src="assets/images/info.svg" />
-                </div>
-                <div class="item-info-title-text float-left">Information</div>
-                <div class="clear"></div>
+<div>
+
+
+    <div class="item-info-title">
+        <div class="item-info-title-image float-left">
+            <img class="item-info-title-img" src="assets/images/info.svg"/>
+        </div>
+        <div class="item-info-title-text float-left">Information</div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="info-item">
+
+        <div ng-show="item.name">
+            <div class="info-item-name"> Reference Information</div>
+
+        </div>
+
+        <loader ng-show="isLoading.dbpedia"></loader>
+
+        <div class="dbpedia" ng-show="!isLoading.dbpedia">
+            <div class="dbpedia-image float-left">
+                <img class="dbpedia-img" ng-src="assets/images/no-image-reference.svg"/>
             </div>
-            
-            <div class="info-item">
-            
-                <div ng-show="item.name">
-                    <div class="info-item-name"> Reference Information </div>
-                   
+            <div class="dbpedia-abstract flex2">
+                <div class="dbpedia-empty" ng-show="!resource.source.description"> No description available</div>
+                <div ng-show="resource.source.description">
+                    {{ resource.source.description}}
+                    <div><b>Url:</b> <a ng-href="{{resource.source.url}}">{{resource.source.url}}</a></div>
                 </div>
-                
-                <loader ng-show="isLoading.dbpedia"></loader>
-                
-                <div class="dbpedia" ng-show="!isLoading.dbpedia">
-                    <div class="dbpedia-image float-left">
-                         <img class="dbpedia-img" ng-src="assets/images/no-image-reference.svg" />  
+            </div>
+            <div class="clear"></div>
+        </div>
+
+
+        <div class="flex">
+
+            <div class="small-list flex1">
+                <div class="small-list-title">Language</div>
+                <div class="small-list-content">
+                    <div class="small-list-item" ng-show="resource.source.language">
+                        <div class="small-list-item-image float-left">
+                            <img class="small-list-item-img" src="assets/images/circle-red.svg"/>
+                        </div>
+                        <div class="small-list-item-name float-left"> {{ resource.source.language }}</div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="dbpedia-abstract flex2"> 
-                        <div ng-show="!resource.source.description" class="dbpedia-empty"> No description available</div>
-                        <div ng-show="resource.source.description">
-                            {{ resource.source.description}} 
-                            <div> <b>Url:</b> <a ng-href="{{resource.source.url}}">{{resource.source.url}}</a></div>
-                        </div>
+                </div>
+            </div> <!-- end of small list -->
+
+            <div class="small-list flex1">
+                <div class="small-list-title">Reference Year</div>
+                <div class="small-list-content" ng-show="resource.source.year">
+                    <div class="small-list-item">
+                        <div class="small-list-item-name float-left"> {{ resource.source.year }}</div>
+                        <div class="clear"></div>
                     </div>
-                    <div class="clear"></div>
                 </div>
-                
-              
-                
-                <div class="flex">
-                    
-                    <div class="small-list flex1">
-                        <div class="small-list-title">Language</div>
-                        <div class="small-list-content">
-                            <div class="small-list-item" ng-show="resource.source.language"> 
-                                <div class="small-list-item-image float-left"> 
-                                    <img class="small-list-item-img" src="assets/images/circle-red.svg"/> 
-                                </div>
-                                <div class="small-list-item-name float-left"> {{ resource.source.language }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div> <!-- end of small list -->
-
-                     <div class="small-list flex1">
-                        <div class="small-list-title">Reference Year</div>
-                        <div class="small-list-content" ng-show="resource.source.year">
-                            <div class="small-list-item"> 
-                                <div class="small-list-item-name float-left"> {{ resource.source.year }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div> <!-- end of small list -->
+            </div> <!-- end of small list -->
 
 
-                    <div class="small-list flex1">
-                        <div class="small-list-title">Author</div>
-                        <div class="small-list-content" ng-show="resource.source.author">
-                            <div class="small-list-item"> 
-                                <div class="small-list-item-name float-left"> {{ resource.source.author }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div> <!-- end of small list -->
-                
+            <div class="small-list flex1">
+                <div class="small-list-title">Author</div>
+                <div class="small-list-content" ng-show="resource.source.author">
+                    <div class="small-list-item">
+                        <div class="small-list-item-name float-left"> {{ resource.source.author }}</div>
+                        <div class="clear"></div>
+                    </div>
                 </div>
-                
-                <div class="clear"> </div>
-                
-                
-          
-        
+            </div> <!-- end of small list -->
+
+        </div>
+
+        <div class="clear"></div>
+
+
     </div>
     <div class="clear"></div>
 </div> <!-- end of plants -->

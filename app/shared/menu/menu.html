@@ -1,12 +1,13 @@
 <div id="menu" ng-controller="menuController">
-    <div class="clear"> </div>
+    <div class="clear"></div>
     <div id="menu-content">
          
         <span ng-repeat="menuItem in menu.pages">
-        <a  ng-click="goTo(menuItem.link)" ng-if="menuItem.authorized">
-            <div class="menu-item" ng-class="{ 'menu-item-selected' : menuItem.active, 'menu-item-normal': !menuItem.active}">
+        <a ng-click="goTo(menuItem.link)" ng-if="menuItem.authorized">
+            <div class="menu-item"
+                 ng-class="{ 'menu-item-selected' : menuItem.active, 'menu-item-normal': !menuItem.active}">
                 <div class='menu-item-icon ng-animate-disabled' ng-show="!menuItem.active">
-                    <img class="menu-item-img" ng-src='assets/images/{{menuItem.icon}}' />
+                    <img class="menu-item-img" ng-src='assets/images/{{menuItem.icon}}'/>
                 </div>
                 <div class='menu-item-icon ng-animate-disabled' ng-show="menuItem.active">
                     <img class="menu-item-img" ng-src='assets/images/{{menuItem.iconActive}}'/>
@@ -18,9 +19,8 @@
         </span>
 
         <!--div class="clear"></div> <!-- CLEAR -->
-   
-    </div> <!-- end of menu-content --> 
-    
+
+    </div> <!-- end of menu-content -->
+
 </div> <!-- end of menu --> 
 
- 

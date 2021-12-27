@@ -1,23 +1,21 @@
 <div id="user-menu" ng-show="userMenu">
-    
-   
-         
-        
-    <div id="user-menu-back" class="float-right" ng-click="toggleUserMenu()"> 
-        <img class="img15x" src="assets/images/arrow-pointer.svg" /> 
+
+
+    <div class="float-right" id="user-menu-back" ng-click="toggleUserMenu()">
+        <img class="img15x" src="assets/images/arrow-pointer.svg"/>
     </div>
-    
-    <div class="clear"> </div>
-    
-    <div id="user-menu-content" class="center">
-        <div id="user-menu-pic"> <img class="img7x inline" src="assets/images/profile.svg" /> </div>
-        <div id="user-menu-name" class="bold"> {{auth.user.name}} {{auth.user.surname}} </div>
+
+    <div class="clear"></div>
+
+    <div class="center" id="user-menu-content">
+        <div id="user-menu-pic"><img class="img7x inline" src="assets/images/profile.svg"/></div>
+        <div class="bold" id="user-menu-name"> {{auth.user.name}} {{auth.user.surname}}</div>
     </div>
-    
+
     <div id="user-menu-footer">
-        <div id="user-menu-logout" class="float-right" ng-click="logout()">
-            <img class="img2x" src="assets/images/logout.svg" />
+        <div class="float-right" id="user-menu-logout" ng-click="logout()">
+            <img class="img2x" src="assets/images/logout.svg"/>
         </div>
     </div>
-    
+
 </div><!-- end of user menu -->

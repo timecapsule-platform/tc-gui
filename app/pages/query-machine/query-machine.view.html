@@ -1,31 +1,31 @@
-<div id="cover-query-machine" class="cover"> <img class="cover-img" src="assets/images/cover-query-machine.svg"/></div>
+<div class="cover" id="cover-query-machine"><img class="cover-img" src="assets/images/cover-query-machine.svg"/></div>
 
-<div id="query-machine" class="ui-content-div">
+<div class="ui-content-div" id="query-machine">
 
-    <div id="timecapsule-button" class="float-right" ng-show="query.select && !isGuest()" ng-click="showCreateTimecapsulePopup()">
+    <div class="float-right" id="timecapsule-button" ng-click="showCreateTimecapsulePopup()"
+         ng-show="query.select && !isGuest()">
         <!-- <div class="btn-create-timecapsule"> <img class="img1x" src="assets/images/save.svg"/> </div> -->
-        <div class="white-btn">Create Time Capsule</div> 
+        <div class="white-btn">Create Time Capsule</div>
     </div>
-    
-    
+
+
     <div class="page-header">Query Machine</div>
-    
+
     <loader ng-show="isLoading.page"></loader>
-    
-    
-    
+
+
     <div class="page-content">
-        
+
         <div id="query-panel">
-        
-            <div id="query-area" class="center">
-            
-                <div 
-                     id="query-area-empty" 
-                     class="center inline space-bottom" 
-                     ng-click="showQuerySelectPopup()" 
-                     ng-show="!query.select"
-                     >
+
+            <div class="center" id="query-area">
+
+                <div
+                        class="center inline space-bottom"
+                        id="query-area-empty"
+                        ng-click="showQuerySelectPopup()"
+                        ng-show="!query.select"
+                >
                     <div class="plus-btn inline space-right">
                         <img class="img1x" src="assets/images/plus.svg"/>
                     </div>
@@ -33,41 +33,43 @@
                         Click To Start Building the Query!
                     </div>
                 </div>
-                
+
                 <div class="query">
-                 
+
                     <div class="query-text inline" ng-show="query.select">{{query.select.text}}</div>
-                    
-                    <div class="plus-btn inline space-right" ng-show="query.select.criteria && !query.criteria" 
-                         ng-click="showQueryCriteriaPopup()">
+
+                    <div class="plus-btn inline space-right" ng-click="showQueryCriteriaPopup()"
+                         ng-show="query.select.criteria && !query.criteria">
                         <img class="img1x" src="assets/images/plus.svg"/>
                     </div>
-                    
-                    <div id="query-criteria" class="query-var inline"  
-                         ng-show="query.criteria" ng-class="query.criteria.bg" ng-click="showQueryCriteriaPopup()" >{{query.criteria.name}}
+
+                    <div class="query-var inline" id="query-criteria"
+                         ng-class="query.criteria.bg" ng-click="showQueryCriteriaPopup()" ng-show="query.criteria">
+                        {{query.criteria.name}}
                     </div>
-                    
-                    <div id="query-select" class="query-var inline"  ng-show="query.select" ng-class="query.select.bg" 
-                         ng-click="showQuerySelectPopup()">
+
+                    <div class="query-var inline" id="query-select" ng-class="query.select.bg" ng-click="showQuerySelectPopup()"
+                         ng-show="query.select">
                         {{query.select.name}}
                     </div>
-                    <div class="plus-btn inline space-left-right" 
-                         ng-show="query.select && query.select.from.length && (!query.from || !query.from.data)" 
-                         ng-click="showQueryFromPopup()">
+                    <div class="plus-btn inline space-left-right"
+                         ng-click="showQueryFromPopup()"
+                         ng-show="query.select && query.select.from.length && (!query.from || !query.from.data)">
                         <img class="img1x" src="assets/images/plus.svg"/>
                     </div>
-                    
-                    <div class="query-text inline" ng-show="query.from && query.from.data"> {{query.from.text}} </div>
-                    <div class="query-var inline"  ng-show="query.from && query.from.data" ng-class="query.from.bg" ng-click="showQueryFromPopup()">
+
+                    <div class="query-text inline" ng-show="query.from && query.from.data"> {{query.from.text}}</div>
+                    <div class="query-var inline" ng-class="query.from.bg" ng-click="showQueryFromPopup()"
+                         ng-show="query.from && query.from.data">
                         <div class="query-var-icon inline-top">
                             <img class="img1x" ng-src="assets/images/{{query.from.icon}}"/>
                         </div>
-                        <div class="inline-top">{{query.from.data.name}} </div>
+                        <div class="inline-top">{{query.from.data.name}}</div>
                     </div>
-                    
-                    
-                    <span ng-show="!query.select.from.length || (query.from && query.from.data)" 
-                          ng-repeat="filter in query.filters">
+
+
+                    <span ng-repeat="filter in query.filters"
+                          ng-show="!query.select.from.length || (query.from && query.from.data)">
                         <div class="query-text inline"> {{filter.text}} </div>
                         <div class="query-var inline" ng-class="filter.bg" ng-click="showQueryFiltersPopup()">
                             <div class="query-var-icon inline-top">
@@ -76,599 +78,594 @@
                             <div class="inline-top">{{filter.data.name}} </div>
                         </div>
                     </span>
-                    
-                    <div class="plus-btn inline space-left-right" 
+
+                    <div class="plus-btn inline space-left-right"
+                         ng-click="showQueryFiltersPopup()"
                          ng-show="(query.select.from.length && query.from && query.from.data && query.select.filters.length)
-                                  || !query.select.from.length && query.select.filters.length" 
-                         ng-click="showQueryFiltersPopup()">
+                                  || !query.select.from.length && query.select.filters.length">
                         <img class="img1x" src="assets/images/plus.svg"/>
                     </div>
-  
-                    
-                    
-                </div> <!-- end of query -->
-             
- 
-            
-            <div id="query-buttons" class="align-center">
-                <div class="white-btn" ng-click="query.Execute()">Execute Query</div> 
-                <div class="white-btn" ng-click="query.Clear(); searchClear();">Clear Query</div>
-                <div class="white-btn" ng-click="showCompareQueriesPopup()">Compare</div>
-            </div>
-                
-             
-                
-          
-            
-        </div> <!-- end of query panel -->
-        
-        
-        
-        
-        <div class="divider-horizontal"></div>
-        
-        
-        
-            
-        <!------------------------------------------------------------------------------->   
-        <!--------------------------- RESULTS ------------------------------------------->
-        <!------------------------------------------------------------------------------->       
-            
-        
-        <div id="result-panel" class="flex">
-            
-            <div id="query-results" class="flex2">
-                 
-                
-                
-                <div class="filters-container float-right">
-                    <input type="radio" id="userRoleFilterAll" ng-model="filters.role" name="userRoleFilter" value="all" checked>
-                    <label for="userRoleFilterAll" ng-click="setResultsView('Redundant')"  >Redundant</label>
 
-                    <input type="radio" id="userRoleFilterAdministrators" ng-model="filters.role" name="userRoleFilter" value="Administrator">
-                    <label for="userRoleFilterAdministrators" ng-click="setResultsView('Condensed')">Condensed</label>
-                </div> <!-- end of filters container -->
-                
-                <div class="export-btn cursor float-right" ng-click="showExportPopup()" ng-show="query.results.length">
-                    <div class="export-btn-icon inline-top"><img class="img1x" src="assets/images/export.svg"/></div> 
-                    <div class="export-btn-text inline-top">Export</div> 
+
+                </div> <!-- end of query -->
+
+
+                <div class="align-center" id="query-buttons">
+                    <div class="white-btn" ng-click="query.Execute()">Execute Query</div>
+                    <div class="white-btn" ng-click="query.Clear(); searchClear();">Clear Query</div>
+                    <div class="white-btn" ng-click="showCompareQueriesPopup()">Compare</div>
                 </div>
-                
-                 <div class="minimize float-right space-right space-top" ng-show="query.results && query.results.length" 
-                      ng-click="isMinimized.results = !isMinimized.results">
-                    <img class="img2x" src="assets/images/minimize.svg" ng-show="isMinimized.results" />
-                    <img class="img2x" src="assets/images/minimize-red.svg" ng-show="!isMinimized.results" />
+
+
+            </div> <!-- end of query panel -->
+
+
+            <div class="divider-horizontal"></div>
+
+
+            <!------------------------------------------------------------------------------->
+            <!--------------------------- RESULTS ------------------------------------------->
+            <!------------------------------------------------------------------------------->
+
+
+            <div class="flex" id="result-panel">
+
+                <div class="flex2" id="query-results">
+
+
+                    <div class="filters-container float-right">
+                        <input checked id="userRoleFilterAll" name="userRoleFilter" ng-model="filters.role"
+                               type="radio" value="all">
+                        <label for="userRoleFilterAll" ng-click="setResultsView('Redundant')">Redundant</label>
+
+                        <input id="userRoleFilterAdministrators" name="userRoleFilter" ng-model="filters.role"
+                               type="radio" value="Administrator">
+                        <label for="userRoleFilterAdministrators"
+                               ng-click="setResultsView('Condensed')">Condensed</label>
+                    </div> <!-- end of filters container -->
+
+                    <div class="export-btn cursor float-right" ng-click="showExportPopup()"
+                         ng-show="query.results.length">
+                        <div class="export-btn-icon inline-top"><img class="img1x" src="assets/images/export.svg"/>
+                        </div>
+                        <div class="export-btn-text inline-top">Export</div>
+                    </div>
+
+                    <div class="minimize float-right space-right space-top"
+                         ng-click="isMinimized.results = !isMinimized.results"
+                         ng-show="query.results && query.results.length">
+                        <img class="img2x" ng-show="isMinimized.results" src="assets/images/minimize.svg"/>
+                        <img class="img2x" ng-show="!isMinimized.results" src="assets/images/minimize-red.svg"/>
+                    </div>
+
+                    <div class="item-info-title">
+                        <div class="item-info-title-image float-left">
+                            <img class="item-info-title-img" src="assets/images/results.svg"/>
+                        </div>
+                        <div class="item-info-title-text float-left">Results</div>
+                        <div class="clear"></div>
+                    </div>
+
+
+                    <div class="space-top" id="results-content" ng-show="!isMinimized.results">
+
+                        <loader ng-show="query.isExecuting"></loader>
+
+                        <div class="center" id="results-empty"
+                             ng-show="query && !query.isExecuting && (!query.results || !query.results.length)">
+                            No results!
+                        </div>
+
+                        <div class="references-total space-top-bottom"
+                             ng-show="query && query.resultsCount && query.results && query.results.length && !query.isExecutingCount">
+                            <span class="small-list-title">Total:</span>
+                            <b>{{ query.resultsCount }}</b> Results
+                        </div>
+
+                        <!------------------------ RESULTS (Redundant) ---------------------------->
+                        <div ng-show="!query.isExecuting && resultsView == 'Redundant'">
+
+                            <div class="result" ng-repeat="rs in query.results track by $index">
+
+                                <!------------------------ RESULT CONCEPT ---------------------------->
+
+                                <div class="orange-box float-right" ng-show="rs.variantCount">
+                                    {{rs.variantCount.value}}
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(query.resourceType, query.resourceName, query.resourceConcept)"
+                                     ng-show="query.resultFormat == 'VARIANT'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-blue.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.nameVariant.value }}</div>
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(query.resourceType, rs.name.value, rs.name.value)"
+                                     ng-show="query.resultFormat == 'DRUG'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-pink.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.name.value }}</div>
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(rs.nameVariant.value,'SOURCE')"
+                                     ng-show="query.resultFormat == 'SOURCE'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-yellow.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.sourceName.value }}</div>
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(query.resourceType, rs.plantName.value, rs.plantName.value)"
+                                     ng-show="query.resultFormat == 'PLANT'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-green.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.plantName.value }}</div>
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(rs.nameVariant.value,'LOCATION')"
+                                     ng-show="query.resultFormat == 'LOCATION'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-orange.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.locationName.value }}</div>
+                                    <div class="result-title-text inline-top" ng-show="!rs.locationName">Unnamed</div>
+                                </div>
+
+
+                                <!------------------------ RESULT REFERENCE DATA ---------------------------->
+
+                                <div class="result-data float-left" ng-show="rs.ambiguous1 && rs.ambiguous2">
+                                    <div class="result-data-text inline bold">{{rs.ambiguous1.value}}</div>
+                                    <div class="result-data-text inline">&#9679;</div>
+                                    <div class="result-data-text inline bold">{{rs.ambiguous2.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left cursor" ng-click="showResource('PLANT', rs.plantName.value, rs.plantName.value)"
+                                     ng-show="rs.plantName">
+                                    <div class="result-data-title bold inline">Plant Species:</div>
+                                    <div class="result-data-text inline">{{rs.plantName.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.genusName">
+                                    <div class="result-data-title bold inline">Genus:</div>
+                                    <div class="result-data-text inline">{{rs.genusName.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left cursor" ng-click="showResource('PLANT', rs.pPlant.value, rs.pPlant.value)"
+                                     ng-show="rs.pPlant">
+                                    <div class="result-data-title bold inline">Produced by Plant:</div>
+                                    <div class="result-data-text inline">{{rs.pPlant.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.familyName">
+                                    <div class="result-data-title bold inline">Family:</div>
+                                    <div class="result-data-text inline">{{rs.familyName.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.ppart">
+                                    <div class="result-data-title bold inline">Plant Part:</div>
+                                    <div class="result-data-text inline">{{rs.ppart.value}}</div>
+                                </div>
+
+                                <div class="clear"></div>
+
+                                <div class="result-data float-left"
+                                     ng-show="rs.nameVariant && query.resultFormat != 'VARIANT'">
+                                    <div class="result-data-title bold inline">Name Variant:</div>
+                                    <div class="result-data-text inline">{{rs.nameVariant.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.language">
+                                    <div class="result-data-title bold inline">Language:</div>
+                                    <div class="result-data-text inline">{{rs.language.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.use">
+                                    <div class="result-data-title bold inline">Use:</div>
+                                    <div class="result-data-text inline">{{rs.use.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.nameYear">
+                                    <div class="result-data-title bold inline">Year:</div>
+                                    <div class="result-data-text inline">{{rs.nameYear.value}}</div>
+                                </div>
+
+
+                                <div class="result-data float-left cursor" ng-click="showResource('DRUG', rs.pDrug.value, rs.pDrug.value)"
+                                     ng-show="rs.pDrug">
+                                    <div class="result-data-title bold inline">Produces Drug Component:</div>
+                                    <div class="result-data-text inline">{{rs.pDrug.value}}</div>
+                                </div>
+
+                                <div class="clear"></div>
+
+                                <div class="result-data float-left" ng-show="rs.locationName">
+                                    <div class="result-data-title bold inline">Location:</div>
+                                    <div class="result-data-text inline"> {{rs.locationName.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.latitude && rs.longitude">
+                                    <div class="result-data-title bold inline">Coordinates:</div>
+                                    <div class="result-data-text inline">{{rs.latitude.value}}, {{rs.longitude.value}}
+                                    </div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.type">
+                                    <div class="result-data-title bold inline">Type:</div>
+                                    <div class="result-data-text inline">{{rs.type.value}}</div>
+                                </div>
+
+                                <div class="clear"></div>
+
+                                <div class="result-data float-left" ng-show="rs.lineNumber">
+                                    <div class="result-data-title bold inline">Line Number:</div>
+                                    <div class="result-data-text inline">{{rs.lineNumber.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.barcode">
+                                    <div class="result-data-title bold inline">Barcode:</div>
+                                    <div class="result-data-text inline">{{rs.barcode.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.id">
+                                    <div class="result-data-title bold inline">id:</div>
+                                    <div class="result-data-text inline">{{rs.id.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left cursor"
+                                     ng-click="showResource('SOURCE', rs.sourceName.value, null)"
+                                     ng-show="rs.sourceName && query.resultFormat != 'SOURCE'">
+                                    <div class="result-data-title bold inline">Reference Source:</div>
+                                    <div class="result-data-text inline">{{rs.sourceName.value}}</div>
+                                </div>
+
+
+                                <div class="result-data float-left" ng-show="rs.sourceType">
+                                    <div class="result-data-title bold inline">Publication Type:</div>
+                                    <div class="result-data-text inline">{{rs.sourceType.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.sourceLanguage">
+                                    <div class="result-data-title bold inline">Publication Language:</div>
+                                    <div class="result-data-text inline">{{rs.sourceLanguage.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.sourceDate">
+                                    <div class="result-data-title bold inline">Publication Date:</div>
+                                    <div class="result-data-text inline">{{rs.sourceDate.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.sourceAuthor">
+                                    <div class="result-data-title bold inline">Publication Author:</div>
+                                    <div class="result-data-text inline">{{rs.sourceAuthor.value}}</div>
+                                </div>
+
+                                <div class="result-data float-left" ng-show="rs.sourceLocation">
+                                    <div class="result-data-title bold inline">Publication Location:</div>
+                                    <div class="result-data-text inline">{{rs.sourceLocation.value}}</div>
+                                    ({{rs.slatitude.value}}, {{rs.slongitude.value}})
+                                </div>
+
+                                <div class="result-data clear" ng-show="rs.sourceUrl">
+                                    <div class="result-data-title bold inline">Publication Url:</div>
+                                    <div class="result-data-text inline">
+                                        <a ng-href="{{rs.sourceUrl.value}}">{{rs.sourceUrl.value}}</a>
+                                    </div>
+                                </div>
+
+                                <div class="result-data clear" ng-show="rs.sourceUrl">
+                                    <div class="result-data-title bold inline">Publication Description:</div>
+                                    <div class="result-data-text inline"> {{rs.sourceDescription.value}}</div>
+                                </div>
+
+                                <div class="clear"></div>
+                            </div>
+
+                            <div class="space-top-bottom"></div>
+                            <loader-small ng-show="isLoading.resultsAll"></loader-small>
+                            <div class="results-more center cursor"
+                                 ng-click="query.ExecuteAll()"
+                                 ng-show="!query.isExecutingAll && query.results && query.results.length && query.resultsCount > query.results.length"
+                            >
+                                Load All
+                            </div>
+
+                        </div> <!-- end of results (Redundant) -->
+
+
+                        <!------------------------ RESULTS (Condensed) ---------------------------->
+                        <div ng-show="!query.isExecuting && resultsView == 'Condensed'">
+
+                            <div class="result" ng-repeat="rs in query.condensed track by $index">
+
+                                <!------------------------ RESULT CONCEPT ---------------------------->
+                                <div class="orange-box float-right" ng-show="rs.variantCount">
+                                    {{rs.variantCount.value}}
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(query.resourceType, query.resourceName, query.resourceConcept)"
+                                     ng-show="query.resultFormat == 'VARIANT'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-blue.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.name }}</div>
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(query.resourceType, rs.name, rs.name)"
+                                     ng-show="query.resultFormat == 'DRUG'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-pink.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.name }}</div>
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(query.resourceType, rs.name, rs.name)"
+                                     ng-show="query.resultFormat == 'SOURCE'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-yellow.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.name }}</div>
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(query.resourceType, rs.name, rs.name)"
+                                     ng-show="query.resultFormat == 'PLANT'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-green.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.name }}</div>
+                                </div>
+
+                                <div class="result-title"
+                                     ng-click="showResource(rs.nameVariant.value,'LOCATION')"
+                                     ng-show="query.resultFormat == 'LOCATION'">
+                                    <div class="result-title-icon inline-top">
+                                        <img class="img1x" src="assets/images/circle-orange.svg"/>
+                                    </div>
+                                    <div class="result-title-text inline-top">{{ rs.name }}</div>
+                                </div>
+
+
+                                <!------------------------ RESULT REFERENCE DATA ---------------------------->
+                                <div class="sub-reference" ng-repeat="reference in rs.references">
+
+
+                                    <div class="result-data float-left"
+                                         ng-show="reference.ambiguous1 && reference.ambiguous2">
+                                        <div class="result-data-title bold inline">Ambiguous:</div>
+                                        <div class="result-data-text inline">{{reference.ambiguous1.value}}</div>
+                                        <div class="result-data-text inline">&#8226;</div>
+                                        <div class="result-data-text inline">{{reference.ambiguous2.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left cursor" ng-click="showResource('PLANT', reference.plantName.value, reference.plantName.value)"
+                                         ng-show="reference.plantName">
+                                        <div class="result-data-title bold inline">Plant Species:</div>
+                                        <div class="result-data-text inline">{{reference.plantName.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.genusName">
+                                        <div class="result-data-title bold inline">Genus:</div>
+                                        <div class="result-data-text inline">{{reference.genusName.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left cursor" ng-click="showResource('PLANT', reference.pPlant.value, reference.pPlant.value)"
+                                         ng-show="reference.pPlant">
+                                        <div class="result-data-title bold inline">Produced by Plant:</div>
+                                        <div class="result-data-text inline">{{reference.pPlant.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.familyName">
+                                        <div class="result-data-title bold inline">Family:</div>
+                                        <div class="result-data-text inline">{{reference.familyName.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.ppart">
+                                        <div class="result-data-title bold inline">Plant Part:</div>
+                                        <div class="result-data-text inline">{{reference.ppart.value}}</div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                    <div class="result-data float-left"
+                                         ng-show="reference.nameVariant && query.resultFormat != 'VARIANT'">
+                                        <div class="result-data-title bold inline">Name Variant:</div>
+                                        <div class="result-data-text inline">{{reference.nameVariant.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.language">
+                                        <div class="result-data-title bold inline">Language:</div>
+                                        <div class="result-data-text inline">{{reference.language.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.use">
+                                        <div class="result-data-title bold inline">Use:</div>
+                                        <div class="result-data-text inline">{{reference.use.value}}</div>
+                                    </div>
+
+
+                                    <div class="result-data float-left cursor" ng-click="showResource('DRUG', reference.pDrug.value, reference.pDrug.value)"
+                                         ng-show="reference.pDrug">
+                                        <div class="result-data-title bold inline">Produces Drug Component:</div>
+                                        <div class="result-data-text inline">{{reference.pDrug.value}}</div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+                                    <div class="result-data float-left" ng-show="reference.locationName">
+                                        <div class="result-data-title bold inline">Location:</div>
+                                        <div class="result-data-text inline">{{reference.locationName.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left"
+                                         ng-show="reference.latitude && reference.longitude">
+                                        <div class="result-data-title bold inline"> Coordinates:</div>
+                                        <div class="result-data-text inline">
+                                            {{reference.latitude.value}}, {{reference.longitude.value}}
+                                        </div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.type">
+                                        <div class="result-data-title bold inline"> Type:</div>
+                                        <div class="result-data-text inline">{{reference.type.value}}</div>
+                                    </div>
+
+                                    <div class="clear"></div>
+
+
+                                    <div class="result-data float-left" ng-show="reference.specimen">
+                                        <div class="result-data-title bold inline">Specimen:</div>
+                                        <div class="result-data-text inline">{{reference.specimen.value}}</div>
+                                        <div class="result-data-text inline"
+                                             ng-show="reference.latitude && reference.longitude">
+                                            ({{reference.latitude.value}}, {{reference.longitude.value}})
+                                        </div>
+                                    </div>
+
+
+                                    <div class="clear"></div>
+
+                                    <div class="result-data float-left" ng-show="reference.lineNumber">
+                                        <div class="result-data-title bold inline">Line Number:</div>
+                                        <div class="result-data-text inline">{{reference.lineNumber.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.barcode">
+                                        <div class="result-data-title bold inline">Barcode:</div>
+                                        <div class="result-data-text inline">{{reference.barcode.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.id">
+                                        <div class="result-data-title bold inline">id:</div>
+                                        <div class="result-data-text inline">{{reference.id.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left cursor"
+                                         ng-click="showResource('SOURCE', reference.sourceName.value, null)"
+                                         ng-show="reference.sourceName && query.resultFormat != 'SOURCE'">
+                                        <div class="result-data-title bold inline">Reference Source:</div>
+                                        <div class="result-data-text inline">{{reference.sourceName.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.sourceType">
+                                        <div class="result-data-title bold inline">Publication Type:</div>
+                                        <div class="result-data-text inline">{{reference.sourceType.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.sourceDate">
+                                        <div class="result-data-title bold inline">Publication Language:</div>
+                                        <div class="result-data-text inline">{{reference.sourceLanguage.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.sourceDate">
+                                        <div class="result-data-title bold inline">Publication Date:</div>
+                                        <div class="result-data-text inline">{{reference.sourceDate.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.sourceAuthor">
+                                        <div class="result-data-title bold inline">Publication Author:</div>
+                                        <div class="result-data-text inline">{{reference.sourceAuthor.value}}</div>
+                                    </div>
+
+                                    <div class="result-data float-left" ng-show="reference.sourceLocation">
+                                        <div class="result-data-title bold inline">Publication Location:</div>
+                                        <div class="result-data-text inline">
+                                            {{reference.sourceLocation.value}}
+                                            <span ng-show="reference.slatitude && reference.slongitude"> ({{reference.slatitude.value}},     {{reference.slongitude.value}})
+                                        </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="result-data clear" ng-show="reference.sourceUrl">
+                                        <div class="result-data-title bold inline">Publication Url:</div>
+                                        <div class="result-data-text inline">
+                                            <a ng-href="{{rs.sourceUrl.value}}">{{reference.sourceUrl.value}}</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="result-data clear" ng-show="reference.sourceUrl">
+                                        <div class="result-data-title bold inline">Publication Description:</div>
+                                        <div class="result-data-text inline"> {{reference.sourceDescription.value}}
+                                        </div>
+                                    </div>
+
+                                    <div class="clear"></div>
+                                </div>
+
+                            </div>
+                        </div> <!-- end of results (condensed)  -->
+
+
+                    </div> <!-- end of results content -->
+
+
+                </div><!-- end of query results -->
+
+
+            </div> <!-- end of results panel -->
+
+
+            <div class="divider-horizontal"></div>
+
+
+            <!------------------------------------------------------------------------------->
+            <!--------------------------- COMPARE ------------------------------------------->
+            <!------------------------------------------------------------------------------->
+
+            <div id="compare">
+
+                <div class="white-btn float-right" ng-click="clearCompareQueries()">Clear</div>
+                <div class="white-btn float-right" ng-click="addQueryToCompare()">Add Query</div>
+                <div class="purple-btn float-right space-right"
+                     ng-click="showComparePopup()"
+                     ng-show="compare.queries.length && compare.queries.length > 1"> Compare
                 </div>
-                 
+
                 <div class="item-info-title">
                     <div class="item-info-title-image float-left">
-                        <img class="item-info-title-img" src="assets/images/results.svg" />
+                        <img class="item-info-title-img" src="assets/images/compare.svg"/>
                     </div>
-                    <div class="item-info-title-text float-left">Results</div>
+                    <div class="item-info-title-text float-left">Compare</div>
                     <div class="clear"></div>
                 </div>
-                 
-                
-                <div id="results-content" class="space-top" ng-show="!isMinimized.results">
-                    
-                    <loader ng-show="query.isExecuting"></loader>
-                    
-                    <div id="results-empty" class="center" 
-                         ng-show="query && !query.isExecuting && (!query.results || !query.results.length)">
-                        No results!
-                    </div>
-                    
-                    <div class="references-total space-top-bottom" ng-show="query && query.resultsCount && query.results && query.results.length && !query.isExecutingCount"> 
-                        <span class="small-list-title">Total:</span> 
-                        <b>{{ query.resultsCount }}</b> Results
-                    </div>
-                    
-                    <!------------------------ RESULTS (Redundant) ---------------------------->
-                    <div  ng-show="!query.isExecuting && resultsView == 'Redundant'">
-                         
-                        <div class="result"  ng-repeat="rs in query.results track by $index">
-                            
-                            <!------------------------ RESULT CONCEPT ---------------------------->
-                            
-                            <div class="orange-box float-right" ng-show="rs.variantCount">
-                                 {{rs.variantCount.value}} 
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'VARIANT'"
-                                 ng-click="showResource(query.resourceType, query.resourceName, query.resourceConcept)">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-blue.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.nameVariant.value }}</div>
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'DRUG'"
-                                 ng-click="showResource(query.resourceType, rs.name.value, rs.name.value)">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-pink.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.name.value }}</div>
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'SOURCE'"
-                                 ng-click="showResource(rs.nameVariant.value,'SOURCE')">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-yellow.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.sourceName.value }}</div>
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'PLANT'"
-                                 ng-click="showResource(query.resourceType, rs.plantName.value, rs.plantName.value)">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-green.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.plantName.value }}</div>
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'LOCATION'"
-                                 ng-click="showResource(rs.nameVariant.value,'LOCATION')">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-orange.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.locationName.value }}</div>
-                                <div class="result-title-text inline-top" ng-show="!rs.locationName">Unnamed</div>
-                            </div>
-                            
-                            
-                            <!------------------------ RESULT REFERENCE DATA ---------------------------->
-                              
-                            <div class="result-data float-left" ng-show="rs.ambiguous1 && rs.ambiguous2">
-                                <div class="result-data-text inline bold">{{rs.ambiguous1.value}}</div>
-                                <div class="result-data-text inline">&#9679;</div>
-                                <div class="result-data-text inline bold">{{rs.ambiguous2.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left cursor" ng-show="rs.plantName"
-                                 ng-click="showResource('PLANT', rs.plantName.value, rs.plantName.value)">
-                                <div class="result-data-title bold inline">Plant Species: </div>
-                                <div class="result-data-text inline">{{rs.plantName.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.genusName">
-                                <div class="result-data-title bold inline">Genus: </div>
-                                <div class="result-data-text inline">{{rs.genusName.value}}</div>
-                            </div>
-                            
-                             <div class="result-data float-left cursor" ng-show="rs.pPlant"
-                                  ng-click="showResource('PLANT', rs.pPlant.value, rs.pPlant.value)">
-                                <div class="result-data-title bold inline">Produced by Plant: </div>
-                                <div class="result-data-text inline">{{rs.pPlant.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.familyName">
-                                <div class="result-data-title bold inline">Family: </div>
-                                <div class="result-data-text inline">{{rs.familyName.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.ppart">
-                                <div class="result-data-title bold inline">Plant Part: </div>
-                                <div class="result-data-text inline">{{rs.ppart.value}}</div>
-                            </div>
-                             
-                            <div class="clear"> </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.nameVariant && query.resultFormat != 'VARIANT'">
-                                <div class="result-data-title bold inline">Name Variant: </div>
-                                <div class="result-data-text inline">{{rs.nameVariant.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.language">
-                                <div class="result-data-title bold inline">Language: </div>
-                                <div class="result-data-text inline">{{rs.language.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.use">
-                                <div class="result-data-title bold inline">Use: </div>
-                                <div class="result-data-text inline">{{rs.use.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.nameYear">
-                                <div class="result-data-title bold inline">Year: </div>
-                                <div class="result-data-text inline">{{rs.nameYear.value}}</div>
-                            </div>
-                            
-                            
-                            
-                            <div class="result-data float-left cursor" ng-show="rs.pDrug"
-                                 ng-click="showResource('DRUG', rs.pDrug.value, rs.pDrug.value)">
-                                <div class="result-data-title bold inline">Produces Drug Component: </div>
-                                <div class="result-data-text inline">{{rs.pDrug.value}}</div>
-                            </div>
-                            
-                            <div class="clear"></div>
-                              
-                            <div class="result-data float-left" ng-show="rs.locationName">
-                                <div class="result-data-title bold inline">Location: </div>
-                                <div class="result-data-text inline"> {{rs.locationName.value}} </div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.latitude && rs.longitude">
-                                <div class="result-data-title bold inline">Coordinates: </div>
-                                <div class="result-data-text inline">{{rs.latitude.value}}, {{rs.longitude.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.type">
-                                <div class="result-data-title bold inline">Type: </div>
-                                <div class="result-data-text inline">{{rs.type.value}}</div>
-                            </div>
-                            
-                            <div class="clear"></div>
-                            
-                            <div class="result-data float-left" ng-show="rs.lineNumber">
-                                <div class="result-data-title bold inline">Line Number: </div>
-                                <div class="result-data-text inline">{{rs.lineNumber.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.barcode">
-                                <div class="result-data-title bold inline">Barcode: </div>
-                                <div class="result-data-text inline">{{rs.barcode.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.id">
-                                <div class="result-data-title bold inline">id: </div>
-                                <div class="result-data-text inline">{{rs.id.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left cursor" ng-show="rs.sourceName && query.resultFormat != 'SOURCE'"
-                                 ng-click="showResource('SOURCE', rs.sourceName.value, null)">
-                                <div class="result-data-title bold inline">Reference Source: </div>
-                                <div class="result-data-text inline">{{rs.sourceName.value}}</div>
-                            </div>
-                            
-                            
-                            <div class="result-data float-left" ng-show="rs.sourceType">
-                                <div class="result-data-title bold inline">Publication Type: </div>
-                                <div class="result-data-text inline">{{rs.sourceType.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.sourceLanguage">
-                                <div class="result-data-title bold inline">Publication Language: </div>
-                                <div class="result-data-text inline">{{rs.sourceLanguage.value}}</div>
-                            </div>
- 
-                            <div class="result-data float-left" ng-show="rs.sourceDate">
-                                <div class="result-data-title bold inline">Publication Date: </div>
-                                <div class="result-data-text inline">{{rs.sourceDate.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.sourceAuthor">
-                                <div class="result-data-title bold inline">Publication Author: </div>
-                                <div class="result-data-text inline">{{rs.sourceAuthor.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="rs.sourceLocation">
-                                <div class="result-data-title bold inline">Publication Location: </div>
-                                <div class="result-data-text inline">{{rs.sourceLocation.value}}</div>
-                                ({{rs.slatitude.value}}, {{rs.slongitude.value}})
-                            </div>
-                            
-                            <div class="result-data clear" ng-show="rs.sourceUrl">
-                                <div class="result-data-title bold inline">Publication Url: </div>
-                                <div class="result-data-text inline">
-                                    <a ng-href="{{rs.sourceUrl.value}}">{{rs.sourceUrl.value}}</a>
-                                </div>
-                            </div>
-                            
-                            <div class="result-data clear" ng-show="rs.sourceUrl">
-                                <div class="result-data-title bold inline">Publication Description: </div>
-                                <div class="result-data-text inline"> {{rs.sourceDescription.value}} </div>
-                            </div>
- 
-                            <div class="clear"></div>
+
+                <div id="compare-empty" ng-show="!compare.queries.length">No queries to compare</div>
+
+                <div id="compare-queries" ng-show="compare.queries.length" style="font-size:0.9em">
+
+                    <div class="compare-query" ng-repeat="q in compare.queries track by $index">
+
+                        <div class="query-var inline" id="query-criteria"
+                             ng-class="q.criteria.bg" ng-show="q.criteria">{{q.criteria.name}}
                         </div>
-                        
-                        <div class="space-top-bottom"></div>
-                        <loader-small  ng-show="isLoading.resultsAll"> </loader-small>
-                        <div class="results-more center cursor" 
-                             ng-show="!query.isExecutingAll && query.results && query.results.length && query.resultsCount > query.results.length" 
-                             ng-click="query.ExecuteAll()"
-                             >
-                        Load All
+
+                        <div class="query-var inline" id="query-select" ng-class="q.select.bg" ng-show="q.select">
+                            {{q.select.name}}
                         </div>
-                        
-                    </div> <!-- end of results (Redundant) -->
-                    
-                    
-                     
-                     
-                    
-                    
-                    <!------------------------ RESULTS (Condensed) ---------------------------->
-                    <div  ng-show="!query.isExecuting && resultsView == 'Condensed'">
-                        
-                        <div class="result" ng-repeat="rs in query.condensed track by $index">
-                            
-                            <!------------------------ RESULT CONCEPT ---------------------------->
-                            <div class="orange-box float-right" ng-show="rs.variantCount">
-                                 {{rs.variantCount.value}} 
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'VARIANT'"
-                                 ng-click="showResource(query.resourceType, query.resourceName, query.resourceConcept)">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-blue.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.name }}</div>
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'DRUG'"
-                                 ng-click="showResource(query.resourceType, rs.name, rs.name)">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-pink.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.name }}</div>
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'SOURCE'"
-                                 ng-click="showResource(query.resourceType, rs.name, rs.name)">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-yellow.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.name }}</div>
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'PLANT'"
-                                 ng-click="showResource(query.resourceType, rs.name, rs.name)">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-green.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.name }}</div>
-                            </div>
-                            
-                            <div class="result-title" 
-                                 ng-show="query.resultFormat == 'LOCATION'"
-                                 ng-click="showResource(rs.nameVariant.value,'LOCATION')">
-                                <div class="result-title-icon inline-top">
-                                    <img class="img1x" src="assets/images/circle-orange.svg"/>
-                                </div>
-                                <div class="result-title-text inline-top">{{ rs.name }}</div>
-                            </div>
-                          
-                            
-                            <!------------------------ RESULT REFERENCE DATA ---------------------------->
-                            <div class="sub-reference" ng-repeat="reference in rs.references">
 
-                                
-                                
-                            <div class="result-data float-left" ng-show="reference.ambiguous1 && reference.ambiguous2">
-                                <div class="result-data-title bold inline">Ambiguous: </div>
-                                <div class="result-data-text inline">{{reference.ambiguous1.value}}</div>
-                                <div class="result-data-text inline">&#8226;</div>
-                                <div class="result-data-text inline">{{reference.ambiguous2.value}}</div>
-                            </div>    
-                                
-                            <div class="result-data float-left cursor" ng-show="reference.plantName"
-                                 ng-click="showResource('PLANT', reference.plantName.value, reference.plantName.value)">
-                                <div class="result-data-title bold inline">Plant Species: </div>
-                                <div class="result-data-text inline">{{reference.plantName.value}}</div>
+
+                        <div class="query-text inline" ng-show="q.from && q.from.data"> {{q.from.text}}</div>
+                        <div class="query-var inline" ng-class="q.from.bg" ng-show="q.from && q.from.data">
+                            <div class="query-var-icon inline-top">
+                                <img class="img1x" ng-src="assets/images/{{q.from.icon}}"/>
                             </div>
-                                
-                            <div class="result-data float-left" ng-show="reference.genusName">
-                                <div class="result-data-title bold inline">Genus: </div>
-                                <div class="result-data-text inline">{{reference.genusName.value}}</div>
-                            </div>
-                                
-                            <div class="result-data float-left cursor" ng-show="reference.pPlant"
-                                 ng-click="showResource('PLANT', reference.pPlant.value, reference.pPlant.value)">
-                                <div class="result-data-title bold inline">Produced by Plant: </div>
-                                <div class="result-data-text inline">{{reference.pPlant.value}}</div>
-                            </div>
-                            
-                            <div class="result-data float-left" ng-show="reference.familyName">
-                                <div class="result-data-title bold inline">Family: </div>
-                                <div class="result-data-text inline">{{reference.familyName.value}}</div>
-                            </div>
-                                
-                            <div class="result-data float-left" ng-show="reference.ppart">
-                                <div class="result-data-title bold inline">Plant Part: </div>
-                                <div class="result-data-text inline">{{reference.ppart.value}}</div>
-                            </div>
-                             
-                            <div class="clear"> </div>
-                                
-                                 <div class="result-data float-left" 
-                                      ng-show="reference.nameVariant && query.resultFormat != 'VARIANT'">
-                                    <div class="result-data-title bold inline">Name Variant: </div>
-                                    <div class="result-data-text inline">{{reference.nameVariant.value}}</div>
-                                </div>
-                                
-                                <div class="result-data float-left" ng-show="reference.language">
-                                    <div class="result-data-title bold inline">Language: </div>
-                                    <div class="result-data-text inline">{{reference.language.value}}</div>
-                                </div>
-
-                                <div class="result-data float-left" ng-show="reference.use">
-                                    <div class="result-data-title bold inline">Use: </div>
-                                    <div class="result-data-text inline">{{reference.use.value}}</div>
-                                </div>
-                                
-                                
-
-                                <div class="result-data float-left cursor" ng-show="reference.pDrug"
-                                     ng-click="showResource('DRUG', reference.pDrug.value, reference.pDrug.value)">
-                                    <div class="result-data-title bold inline">Produces Drug Component: </div>
-                                    <div class="result-data-text inline">{{reference.pDrug.value}}</div>
-                                </div>
-
-                                <div class="clear"></div>    
-                                
-                                <div class="result-data float-left" ng-show="reference.locationName">
-                                    <div class="result-data-title bold inline">Location: </div>
-                                    <div class="result-data-text inline">{{reference.locationName.value}}</div>
-                                </div>
-                                
-                                <div class="result-data float-left" ng-show="reference.latitude && reference.longitude">
-                                    <div class="result-data-title bold inline"> Coordinates:  </div>
-                                    <div class="result-data-text inline">
-                                        {{reference.latitude.value}}, {{reference.longitude.value}}
-                                    </div>
-                                </div>
-                                
-                                <div class="result-data float-left" ng-show="reference.type">
-                                    <div class="result-data-title bold inline"> Type:  </div>
-                                    <div class="result-data-text inline">{{reference.type.value}}</div>
-                                </div>
-
-                                <div class="clear"></div>
-                                
-                                
-                                <div class="result-data float-left" ng-show="reference.specimen">
-                                    <div class="result-data-title bold inline">Specimen: </div>
-                                    <div class="result-data-text inline">{{reference.specimen.value}}</div>
-                                    <div class="result-data-text inline" ng-show="reference.latitude && reference.longitude">
-                                        ({{reference.latitude.value}}, {{reference.longitude.value}})
-                                    </div>
-                                </div>
-                                
-                                
-                                <div class="clear"></div>
-
-                                <div class="result-data float-left" ng-show="reference.lineNumber">
-                                    <div class="result-data-title bold inline">Line Number: </div>
-                                    <div class="result-data-text inline">{{reference.lineNumber.value}}</div>
-                                </div>
-
-                                <div class="result-data float-left" ng-show="reference.barcode">
-                                    <div class="result-data-title bold inline">Barcode: </div>
-                                    <div class="result-data-text inline">{{reference.barcode.value}}</div>
-                                </div>
-
-                                <div class="result-data float-left" ng-show="reference.id">
-                                    <div class="result-data-title bold inline">id: </div>
-                                    <div class="result-data-text inline">{{reference.id.value}}</div>
-                                </div>
-
-                                <div class="result-data float-left cursor" 
-                                     ng-show="reference.sourceName && query.resultFormat != 'SOURCE'"
-                                     ng-click="showResource('SOURCE', reference.sourceName.value, null)">
-                                    <div class="result-data-title bold inline">Reference Source: </div>
-                                    <div class="result-data-text inline">{{reference.sourceName.value}}</div>
-                                </div>
-                                
-                                <div class="result-data float-left" ng-show="reference.sourceType">
-                                    <div class="result-data-title bold inline">Publication Type: </div>
-                                    <div class="result-data-text inline">{{reference.sourceType.value}}</div>
-                                </div>
-
-                                <div class="result-data float-left" ng-show="reference.sourceDate">
-                                    <div class="result-data-title bold inline">Publication Language: </div>
-                                    <div class="result-data-text inline">{{reference.sourceLanguage.value}}</div>
-                                </div>
-
-                                <div class="result-data float-left" ng-show="reference.sourceDate">
-                                    <div class="result-data-title bold inline">Publication Date: </div>
-                                    <div class="result-data-text inline">{{reference.sourceDate.value}}</div>
-                                </div>
-                                
-                                <div class="result-data float-left" ng-show="reference.sourceAuthor">
-                                    <div class="result-data-title bold inline">Publication Author: </div>
-                                    <div class="result-data-text inline">{{reference.sourceAuthor.value}}</div>
-                                </div>
-                                
-                                <div class="result-data float-left" ng-show="reference.sourceLocation">
-                                    <div class="result-data-title bold inline">Publication Location: </div>
-                                    <div class="result-data-text inline">
-                                        {{reference.sourceLocation.value}}
-                                       <span ng-show="reference.slatitude && reference.slongitude"> ({{reference.slatitude.value}},     {{reference.slongitude.value}})
-                                        </span>
-                                    </div>
-                                </div>
-                                
-                                <div class="result-data clear" ng-show="reference.sourceUrl">
-                                    <div class="result-data-title bold inline">Publication Url: </div>
-                                    <div class="result-data-text inline">
-                                        <a ng-href="{{rs.sourceUrl.value}}">{{reference.sourceUrl.value}}</a>
-                                    </div>
-                                </div>
-                                
-                                <div class="result-data clear" ng-show="reference.sourceUrl">
-                                    <div class="result-data-title bold inline">Publication Description: </div>
-                                    <div class="result-data-text inline"> {{reference.sourceDescription.value}} </div>
-                                </div>
-
-                                <div class="clear"></div>
-                            </div>
-                            
+                            <div class="inline-top">{{q.from.data.name}}</div>
                         </div>
-                    </div> <!-- end of results (condensed)  -->
-                        
-                    
-                    
-                </div> <!-- end of results content -->
-               
-                
-            </div><!-- end of query results -->
-            
-             
-            
-        </div> <!-- end of results panel -->
-            
-        
-        <div class="divider-horizontal"></div>    
-        
-            
-            
-        <!------------------------------------------------------------------------------->   
-        <!--------------------------- COMPARE ------------------------------------------->
-        <!------------------------------------------------------------------------------->   
-            
-        <div id="compare">
-            
-            <div class="white-btn float-right" ng-click="clearCompareQueries()">Clear</div>
-            <div class="white-btn float-right" ng-click="addQueryToCompare()">Add Query</div> 
-            <div class="purple-btn float-right space-right" 
-                 ng-click="showComparePopup()"
-                 ng-show="compare.queries.length && compare.queries.length > 1"> Compare </div> 
-            
-            <div class="item-info-title">
-                <div class="item-info-title-image float-left">
-                    <img class="item-info-title-img" src="assets/images/compare.svg" />
-                </div>
-                <div class="item-info-title-text float-left">Compare</div>
-                <div class="clear"></div>
-            </div>
-            
-            <div id="compare-empty"  ng-show="!compare.queries.length">No queries to compare</div>
-            
-            <div id="compare-queries" ng-show="compare.queries.length" style="font-size:0.9em">
-                
-                <div class="compare-query" ng-repeat="q in compare.queries track by $index">
-                  
-                    <div id="query-criteria" class="query-var inline"  
-                         ng-show="q.criteria" ng-class="q.criteria.bg">{{q.criteria.name}}
-                    </div>
-                    
-                    <div id="query-select" class="query-var inline"  ng-show="q.select" ng-class="q.select.bg">
-                        {{q.select.name}}
-                    </div>
-                    
-                    
-                    <div class="query-text inline" ng-show="q.from && q.from.data"> {{q.from.text}} </div>
-                    <div class="query-var inline"  ng-show="q.from && q.from.data" ng-class="q.from.bg">
-                        <div class="query-var-icon inline-top">
-                            <img class="img1x" ng-src="assets/images/{{q.from.icon}}"/>
-                        </div>
-                        <div class="inline-top">{{q.from.data.name}} </div>
-                    </div>
-                    
-                    
-                    <span ng-show="!q.select.from.length || (q.from && q.from.data)" 
-                          ng-repeat="filter in q.filters">
+
+
+                        <span ng-repeat="filter in q.filters"
+                              ng-show="!q.select.from.length || (q.from && q.from.data)">
                         <div class="query-text inline"> {{filter.text}} </div>
                         <div class="query-var inline" ng-class="filter.bg">
                             <div class="query-var-icon inline-top">
@@ -677,178 +674,172 @@
                             <div class="inline-top">{{filter.data.name}} </div>
                         </div>
                     </span>
-                     
-                </div> <!-- end of query -->
-                
-            </div> <!-- end of compare queries -->
-            
-            
-        </div> <!-- end of compare -->
-          
-            
-        <div class="divider-horizontal"></div>       
-            
-            
-            
-            
-        <!-------------------------------------------------------------------------------------->   
-        <!--------------------------- VISUALIZATIONS ------------------------------------------->
-        <!-------------------------------------------------------------------------------------->     
-            
-        
-        
-        
-        <div id="visualizations">
-  
-             <div class="item-info-title">
-                <div class="item-info-title-image float-left">
-                    <img class="item-info-title-img" src="assets/images/visualization.svg" />
+
+                    </div> <!-- end of query -->
+
+                </div> <!-- end of compare queries -->
+
+
+            </div> <!-- end of compare -->
+
+
+            <div class="divider-horizontal"></div>
+
+
+            <!-------------------------------------------------------------------------------------->
+            <!--------------------------- VISUALIZATIONS ------------------------------------------->
+            <!-------------------------------------------------------------------------------------->
+
+
+            <div id="visualizations">
+
+                <div class="item-info-title">
+                    <div class="item-info-title-image float-left">
+                        <img class="item-info-title-img" src="assets/images/visualization.svg"/>
+                    </div>
+                    <div class="item-info-title-text float-left">Visualizations</div>
+                    <div class="clear"></div>
                 </div>
-                <div class="item-info-title-text float-left">Visualizations</div>
-                <div class="clear"></div>
-            </div>
-            
-            <div id="compare-empty"  ng-show="!query.visualizations.length">No Visualizations to show</div>
-            
-            <!-------------------- 1. Name VARIATIONS IN TIME --------------------------->
-            <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('variant-timeline')">
-                <timeline 
-                          title="Name Variations In Time"
-                          type="Variants"
-                          references="query.resultsTotal">
-                </timeline>
-            </div>
-            
-            
-             <!-------------------- 2. LANGUAGE VARIATIONS IN TIME --------------------------->
-            <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('language-timeline')">
-                <timeline 
-                          title="Language Variations In Time"
-                          type="Language"
-                          references="query.resultsTotal">
-                </timeline>
-            </div>
-            
-            
-             <!-------------------- 3. Publication LANGUAGE VARIATIONS IN TIME --------------------------->
-            <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('source-language-timeline')">
-                <timeline 
-                          title="Publication Language Variations In Time"
-                          type="Source Language"
-                          references="query.resultsTotal">
-                </timeline>
-            </div>
-            
-            <!-------------------- 4. LOCATION VARIATIONS IN TIME --------------------------->
-            <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('location-timeline')">
-                <timeline 
-                          title="Location Variations In Time"
-                          type="Source Location"
-                          references="query.resultsTotal">
-                </timeline>
-            </div>
-            
-            
-             
-             <!-------------------- 9. NETWORK DRUG - PLANT PART  --------------------------->
-            <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('network-drug-plant-part')">
-                <div class="visualization-title"> Network:  Drug Components made from Plant Part</div>
-                <network center="query.networkPlantPart" data="query.drugs"></network>
-            </div>
-            
-            <!-------------------- 10. NETWORK DRUG - PLANT SPECIES --------------------------->
-            <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('network-drug-plant')">
-                <div class="visualization-title"> Network:  Drug Components derived from Plant Species</div>
-                <network center="query.networkPlant" data="query.drugs"></network>
-            </div>
-            
-            
-            <!-------------------- 11. PIE CHART - Drugs products by Plant Family --------------------------->
-            <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('pie-drug-family')">
-                <pie-chart 
-                          title="Drugs produced by Plant Family"
-                          family="{{query.plantFamily}}"
-                          references="query.resultsTotal">
-                </pie-chart>
-            </div>
-            
-            <!-------------------- 11. PIE PLANT CHART - Plants Produced by Plant Family --------------------------->
-            <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('pie-plant-family')">
-                <pie-plant-family 
-                          title="Plants that belong to Plant Family"
-                          family="{{query.plantFamily}}">
-                </pie-plant-family>
-            </div>
-            
-            
-            
-            
-            <!-------------------- 13. PIE CHART - Plant Parts that produce drug --------------------------->
-            <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('pie-plant-part')">
-                <pie-chart 
-                          title="Drugs produced by Plant Part"
-                          type="Plant Part"
-                          references="query.resultsTotal">
-                </pie-chart>
-            </div>
-           
-        </div>
-            
-            
-            
-        <div id="visualizations">
-  
-             <div class="item-info-title">
-                <div class="item-info-title-image float-left">
-                    <img class="item-info-title-img" src="assets/images/map-visualization.svg" />
+
+                <div id="compare-empty" ng-show="!query.visualizations.length">No Visualizations to show</div>
+
+                <!-------------------- 1. Name VARIATIONS IN TIME --------------------------->
+                <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('variant-timeline')">
+                    <timeline
+                            references="query.resultsTotal"
+                            title="Name Variations In Time"
+                            type="Variants">
+                    </timeline>
                 </div>
-                <div class="item-info-title-text float-left">Map</div>
-                <div class="clear"></div>
-            </div>
-            
-            <!-------------------- 12 & 18. MAP (using a watcher for query references) --------------------------->
-             
-            <div class="visualization">
-                <button ng-click="initMap()">Show Pointers</button>
-                <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}">
-                    <ng-map scrollwheel="false" center="35.487511, -1.782603" zoom="2"> </ng-map>
+
+
+                <!-------------------- 2. LANGUAGE VARIATIONS IN TIME --------------------------->
+                <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('language-timeline')">
+                    <timeline
+                            references="query.resultsTotal"
+                            title="Language Variations In Time"
+                            type="Language">
+                    </timeline>
                 </div>
-                
-                <div id="map-pointers">
-                    <div class="map-pointer inline-top">
-                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-grows.svg" /></div>
-                        <div class="map-pointer-text inline-top"> Natural Distribution </div>
-                    </div>
-                    
-                    <div class="map-pointer inline-top">
-                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-arcaeological.svg" /></div>
-                        <div class="map-pointer-text inline-top"> Archaeological Finding </div>
-                    </div>
-                    
-                    <div class="map-pointer inline-top">
-                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-cargo.svg" /></div>
-                        <div class="map-pointer-text inline-top"> Cargo </div>
-                    </div>
-                    
-                    <div class="map-pointer inline-top">
-                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-source.svg" /></div>
-                        <div class="map-pointer-text inline-top"> Publication Location </div>
-                    </div>
-                    
-                    <div class="map-pointer inline-top">
-                        <div class="map-pointer-image inline-top"><img src="assets/images/marker-undefined.svg" /></div>
-                        <div class="map-pointer-text inline-top"> Undefined </div>
-                    </div>
+
+
+                <!-------------------- 3. Publication LANGUAGE VARIATIONS IN TIME --------------------------->
+                <div class="visualization"
+                     ng-if="query.resultsTotal.length && isVisualization('source-language-timeline')">
+                    <timeline
+                            references="query.resultsTotal"
+                            title="Publication Language Variations In Time"
+                            type="Source Language">
+                    </timeline>
                 </div>
-                 
+
+                <!-------------------- 4. LOCATION VARIATIONS IN TIME --------------------------->
+                <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('location-timeline')">
+                    <timeline
+                            references="query.resultsTotal"
+                            title="Location Variations In Time"
+                            type="Source Location">
+                    </timeline>
+                </div>
+
+
+                <!-------------------- 9. NETWORK DRUG - PLANT PART  --------------------------->
+                <div class="visualization"
+                     ng-if="query.resultsTotal.length && isVisualization('network-drug-plant-part')">
+                    <div class="visualization-title"> Network: Drug Components made from Plant Part</div>
+                    <network center="query.networkPlantPart" data="query.drugs"></network>
+                </div>
+
+                <!-------------------- 10. NETWORK DRUG - PLANT SPECIES --------------------------->
+                <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('network-drug-plant')">
+                    <div class="visualization-title"> Network: Drug Components derived from Plant Species</div>
+                    <network center="query.networkPlant" data="query.drugs"></network>
+                </div>
+
+
+                <!-------------------- 11. PIE CHART - Drugs products by Plant Family --------------------------->
+                <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('pie-drug-family')">
+                    <pie-chart
+                            family="{{query.plantFamily}}"
+                            references="query.resultsTotal"
+                            title="Drugs produced by Plant Family">
+                    </pie-chart>
+                </div>
+
+                <!-------------------- 11. PIE PLANT CHART - Plants Produced by Plant Family --------------------------->
+                <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('pie-plant-family')">
+                    <pie-plant-family
+                            family="{{query.plantFamily}}"
+                            title="Plants that belong to Plant Family">
+                    </pie-plant-family>
+                </div>
+
+
+                <!-------------------- 13. PIE CHART - Plant Parts that produce drug --------------------------->
+                <div class="visualization" ng-if="query.resultsTotal.length && isVisualization('pie-plant-part')">
+                    <pie-chart
+                            references="query.resultsTotal"
+                            title="Drugs produced by Plant Part"
+                            type="Plant Part">
+                    </pie-chart>
+                </div>
+
             </div>
-            
-           
-            
-            
-        </div> <!-- end of visualizations -->
-          
-        
-    </div> <!-- end of page content -->
-    
-</div> <!-- end of query-machine -->
+
+
+            <div id="visualizations">
+
+                <div class="item-info-title">
+                    <div class="item-info-title-image float-left">
+                        <img class="item-info-title-img" src="assets/images/map-visualization.svg"/>
+                    </div>
+                    <div class="item-info-title-text float-left">Map</div>
+                    <div class="clear"></div>
+                </div>
+
+                <!-------------------- 12 & 18. MAP (using a watcher for query references) --------------------------->
+
+                <div class="visualization">
+                    <button ng-click="initMap()">Show Pointers</button>
+                    <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{googleMapsUrl}}">
+                        <ng-map center="35.487511, -1.782603" scrollwheel="false" zoom="2"></ng-map>
+                    </div>
+
+                    <div id="map-pointers">
+                        <div class="map-pointer inline-top">
+                            <div class="map-pointer-image inline-top"><img src="assets/images/marker-grows.svg"/></div>
+                            <div class="map-pointer-text inline-top"> Natural Distribution</div>
+                        </div>
+
+                        <div class="map-pointer inline-top">
+                            <div class="map-pointer-image inline-top"><img
+                                    src="assets/images/marker-arcaeological.svg"/></div>
+                            <div class="map-pointer-text inline-top"> Archaeological Finding</div>
+                        </div>
+
+                        <div class="map-pointer inline-top">
+                            <div class="map-pointer-image inline-top"><img src="assets/images/marker-cargo.svg"/></div>
+                            <div class="map-pointer-text inline-top"> Cargo</div>
+                        </div>
+
+                        <div class="map-pointer inline-top">
+                            <div class="map-pointer-image inline-top"><img src="assets/images/marker-source.svg"/></div>
+                            <div class="map-pointer-text inline-top"> Publication Location</div>
+                        </div>
+
+                        <div class="map-pointer inline-top">
+                            <div class="map-pointer-image inline-top"><img src="assets/images/marker-undefined.svg"/>
+                            </div>
+                            <div class="map-pointer-text inline-top"> Undefined</div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div> <!-- end of visualizations -->
+
+
+        </div> <!-- end of page content -->
+
+    </div> <!-- end of query-machine -->

@@ -1,49 +1,34 @@
 (function () {
-   
-    'use strict';
+  "use strict";
 
-    angular.module('TIMECAPSULE').factory('PopupService', PopupService);
+  angular.module("TIMECAPSULE").factory("PopupService", PopupService);
 
-     PopupService.$inject = [];
+  PopupService.$inject = [];
 
-     function PopupService()
-    {
+  function PopupService() {
+    var factory = {};
 
-        var factory = {};
-        
-        factory.dialog = null;
-        factory.resource = null;
-        factory.selectDialog = null;
-        factory.selector = null;
-   
-        factory.closeAll = closeAll;
-        
-        return factory;
-        
-        
-        function closeAll()
-        { 
-           
-            if(this.dialog)
-            {
-                this.dialog.close();
-            }
-            
-            if(this.selectDialog)
-            {
-                this.selectDialog.close();
-            }
-            
-            if(this.selector)
-            {
-                this.selector.close();
-            }
-        }
-        
-         
-         
-          
+    factory.dialog = null;
+    factory.resource = null;
+    factory.selectDialog = null;
+    factory.selector = null;
 
+    factory.closeAll = closeAll;
+
+    return factory;
+
+    function closeAll() {
+      if (this.dialog) {
+        this.dialog.close();
+      }
+
+      if (this.selectDialog) {
+        this.selectDialog.close();
+      }
+
+      if (this.selector) {
+        this.selector.close();
+      }
     }
- 
+  }
 })();

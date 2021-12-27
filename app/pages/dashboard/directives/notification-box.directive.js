@@ -1,23 +1,18 @@
-(function(){
+(function () {
+  "use strict";
 
-	"use strict";
-    
-    angular.module("TIMECAPSULE").directive("notificationBox", notificationBoxDirective);
-    
-    function notificationBoxDirective()
-    {
+  angular
+    .module("TIMECAPSULE")
+    .directive("notificationBox", notificationBoxDirective);
 
-        return {
-                restrict: "E",
-                templateUrl: "app/pages/dashboard/directives/notification-box.template.html",
-                scope: { box: "=" }
-                };
-
-    }
-     
-   
-
+  function notificationBoxDirective() {
+    return {
+      restrict: "E",
+      templateUrl:
+        "app/pages/dashboard/directives/notification-box.template.html",
+      scope: { box: "=" },
+    };
+  }
 })();
 
- 
  

@@ -1,33 +1,34 @@
 <div class="visualization-title">{{title}} : {{family}}</div>
- 
+
 <loader ng-show="isLoading"></loader>
 
 <div class="visualization-stats flex">
 
     <div class="visualization-chart flex1">
         <div class="chart inline">
-            <chart ng-if="concepts && concepts.length" 
-                   data="percentages" 
-                   colors="colors" 
+            <chart colors="colors"
+                   data="percentages"
                    labels="concepts"
-                   >
+                   ng-if="concepts && concepts.length"
+            >
             </chart>
         </div>
     </div>
-    
+
     <div class="visualization-numbers flex1">
-        
+
         <div class="visualization-numbers-title bold"> Percentages:</div>
         <div class="visualization-numbers-content">
             <div class="timeline-concept" ng-repeat="$item in dConcepts | orderBy : '-percentage' ">
-                <div class="timeline-concept-square square inline-top" ng-style="{ background: $item.squareColor }"></div>
-                <div class="timeline-concept-name inline-top"> {{$item.concept}} </div>
-                <div class="timeline-concept-name inline-top">  [ {{ $item.occurences }} Occurrences ] </div>
-                <div class="timeline-concept-name float-right"> {{ $item.percentage | number : 1}} % </div>
-                <div class="clear"> </div>
+                <div class="timeline-concept-square square inline-top"
+                     ng-style="{ background: $item.squareColor }"></div>
+                <div class="timeline-concept-name inline-top"> {{$item.concept}}</div>
+                <div class="timeline-concept-name inline-top"> [ {{ $item.occurences }} Occurrences ]</div>
+                <div class="timeline-concept-name float-right"> {{ $item.percentage | number: 1}} %</div>
+                <div class="clear"></div>
             </div>
         </div>
-        
+
     </div>
 
 </div>

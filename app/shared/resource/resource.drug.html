@@ -1,240 +1,235 @@
-<div >
-            
-            
-            
-            <div class="item-info-title">
-                <div class="item-info-title-image float-left">
-                    <img class="item-info-title-img" src="assets/images/info.svg" />
-                </div>
-                <div class="item-info-title-text float-left">Information</div>
-                <div class="clear"></div>
-            </div>
-            
-            <div class="info-item">
-            
-                <div ng-show="item.name">
-                    <div class="info-item-name" >{{ resource.name }} </div>
-                    <div class="info-item-concept">  <b> Drug Component: </b> {{resource.concept}} </div>
-                </div>
-                
-                <loader ng-show="isLoading.dbpedia"></loader>
-                
-                <div class="dbpedia" ng-show="!isLoading.dbpedia">
-                    <div class="dbpedia-image float-left">
-                        <div> <img class="dbpedia-img" ng-src="assets/images/no-image-drug.svg" /> </div>
-                    </div>
-                    <div class="dbpedia-abstract flex2"> 
-                        <div ng-show="!item.abstract" > No description available</div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                
-             
-                
-                <div class="flex">
-                
-                    <div class="small-list space-right flex1">
-                        <div class="small-list-title">Name Variants</div>
-                        <div class="space-top-bottom"></div>
-                        <loader-small ng-show="resource.drug.isLoading.variants"> </loader-small>
-                        <div class="small-list-content">
-                            <div class="small-list-item cursor" 
-                                 ng-repeat="variant in resource.drug.variants track by $index"
-                                 ng-click="resource.Get('DRUG',variant,resource.concept)"> 
-                                <div class="small-list-item-image float-left"> 
-                                    <img class="small-list-item-img" src="assets/images/circle-blue.svg"/> 
-                                </div>
-                                <div class="small-list-item-name float-left max80"> {{ variant }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div> <!-- end of small list -->
-
-                    <div class="small-list space-right flex1">
-                        <div class="small-list-title">Derived from  Plant Species</div>
-                        <div class="space-top-bottom"></div>
-                        <loader-small  ng-show="resource.drug.isLoading.pDrugs"> </loader-small>
-                        <div class="small-list-content">
-                            <div class="small-list-item cursor" 
-                                 ng-repeat="plant in resource.drug.plants track by $index"
-                                 > 
-                                <div class="small-list-item-image float-left"> 
-                                    <img class="small-list-item-img" src="assets/images/circle-green.svg"/> 
-                                </div>
-                                <div class="small-list-item-name float-left max80"> 
-                                    <div ng-click="resource.Get('PLANT',plant.name,plant.name)"> {{ plant.name }}</div> 
-                                     <div ng-repeat="plantVariant in plant.variants track by $index">
-                                         <div class="inline">
-                                             <img class="small-list-item-img" src="assets/images/circle-green-light.svg"/> 
-                                         </div>
-                                         <div class="small-list-item-name inline space-left-top-05"
-                                              ng-click="resource.Get('PLANT',plantVariant,plant.name)"> {{ plantVariant }}</div>
-                                    </div>   
-                                </div> 
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div> <!-- end of small list -->
-
-                    <div class="small-list space-right flex1">
-                        <div class="small-list-title">Uses</div>
-                        <div class="space-top-bottom"></div>
-                        <loader-small  ng-show="resource.drug.isLoading.uses"> </loader-small>
-                        <div class="small-list-content">
-                            <div class="small-list-item" ng-repeat="use in resource.drug.uses track by $index"> 
-                                <div class="small-list-item-image float-left"> 
-                                    <img class="small-list-item-img" src="assets/images/circle-orange.svg"/> 
-                                </div>
-                                <div class="small-list-item-name float-left max80"> {{ use }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div> <!-- end of small list -->
+<div>
 
 
-                    <div class="clear"> </div>
-                    
-                </div> 
-                
-                <div>
-                    <div class="small-list  flex1">
-                        <div class="small-list-title">Mentioned In Reference Sources</div>
-                        <div class="space-top-bottom"></div>
-                        <loader-small  ng-show="resource.drug.isLoading.sources"> </loader-small>
-                        <div class="small-list-content">
-                            <div class="small-list-item" 
-                                 ng-repeat="source in resource.drug.sources track by $index"
-                                 ng-click="resource.Get('SOURCE',source,null)"> 
-                                <div class="small-list-item-image float-left"> 
-                                    <img class="small-list-item-img" src="assets/images/circle-yellow.svg"/> 
-                                </div>
-                                <div class="small-list-item-name float-left max80"> {{ source }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                        </div>
-                    </div> <!-- end of small list -->
-                </div>
-                 
-                
-                
-                 
-                <div>
-                    <div class="small-list-title">References</div>
-                    
-                    <div class="space-top-bottom"></div>
-                    <loader-small  ng-show="resource.drug.isLoading.references"> </loader-small>
-                    
-                    <div class="small-list-content">
-                       
-                        <div class="reference" ng-repeat="reference in resource.drug.references track by $index">
-                            
-                            <div class="small-list-item inline"> 
-                                <div class="small-list-item-image inline"> 
-                                    <img class="small-list-item-img" src="assets/images/circle-blue.svg"/> 
-                                </div>
-                                <div class="small-title inline"> Name Variant: </div>
-                                <div class="small-list-item-name inline"> {{reference.name.value}} </div> 
-                                <div class="clear"></div>
-                            </div>
-                            
-                            
-                            
-                            <div class="small-list-item inline space-left" ng-show="reference.language"> 
-                                <div class="small-title inline"> Language: </div>
-                                <div class="small-list-item-name inline"> {{reference.language.value}} </div> 
-                                <div class="clear"></div>
-                            </div>
-                            
-                            <div class="small-list-item inline space-left" ng-show="reference.location"> 
-                                <div class="small-title inline"> Location: </div>
-                                <div class="small-list-item-name inline"> 
-                                    {{reference.location.value}} ({{reference.latitude.value}}, {{reference.longtitude.value}})
-                                </div> 
-                                <div class="clear"></div>
-                            </div>
-                             
-                            <div class="clear"></div>
-                            
-                            <div class="small-list-item inline" ng-show="reference.plantVariant"> 
-                                <div class="small-list-item-image inline"> 
-                                    <img class="small-list-item-img" src="assets/images/circle-green.svg"/> 
-                                </div>
-                                <div class="small-title inline"> Produced by: </div>
-                                <div class="small-list-item-name inline"> 
-                                    {{ reference.plantVariant.value }} 
-                                     ( <div class="small-title inline"> Plant Species: </div> {{ reference.plantName.value }} )</div> 
-                                <div class="clear"></div>
-                            </div>
-                            
-                            
-                            <div class="clear"></div>
-                            
-                            
-                            <div class="small-list-item inline"> 
-                                <div class="small-list-item-image inline" ng-show="reference.referenceSourceName"> 
-                                    <img class="small-list-item-img" src="assets/images/circle-yellow.svg"/> 
-                                </div>
-                                <div class="small-title inline"> Reference Source: </div>
-                                <div class="small-list-item-name inline"> {{ reference.referenceSourceName.value }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                            
-                             <div class="clear"></div>
-                            
-                             <div class="small-list-item inline space-left" ng-show="reference.referenceSourceLanguage"> 
-                                <div class="small-title inline"> Publication Language: </div>
-                                <div class="small-list-item-name inline"> {{ reference.referenceSourceLanguage.value }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                            
-                             <div class="small-list-item inline space-left" ng-show="reference.referenceSourceLocation"> 
-                                <div class="small-title inline"> Publication Location: </div>
-                                <div class="small-list-item-name inline"> {{ reference.referenceSourceLocation.value }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                            
-                            <div class="small-list-item inline space-left" ng-show="reference.sourceDate"> 
-                                <div class="small-title inline"> Publication Date: </div>
-                                <div class="small-list-item-name inline"> {{ reference.referenceSourceDate.value }} </div> 
-                                <div class="clear"></div>
-                            </div>
-                             
-                            
-                            <div class="small-list-item inline space-left" ng-show="reference.id"> 
-                                <div class="small-title inline"> ID: </div>
-                                <div class="small-list-item-name inline"> {{reference.id.value}} </div> 
-                                <div class="clear"></div>
-                            </div>
-                            
-                             <div class="small-list-item inline space-left" ng-show="reference.lineNumber"> 
-                                <div class="small-title inline"> LineNo: </div>
-                                <div class="small-list-item-name inline"> {{reference.lineNumber.value}} </div> 
-                                <div class="clear"></div>
-                            </div>
-                            
-                             <div class="small-list-item inline space-left" ng-show="reference.barcode"> 
-                                <div class="small-title inline"> Barcode: </div>
-                                <div class="small-list-item-name inline"> {{reference.barcode.value}} </div> 
-                                <div class="clear"></div>
-                            </div>
-                             
-                             
-                            <div class="clear"></div>
-                            
-                        </div>
-                
-                
-               
-                
-                <div class="clear"></div>
-                
-               
-            
-            
-            </div>
-            
+    <div class="item-info-title">
+        <div class="item-info-title-image float-left">
+            <img class="item-info-title-img" src="assets/images/info.svg"/>
         </div>
-        
+        <div class="item-info-title-text float-left">Information</div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="info-item">
+
+        <div ng-show="item.name">
+            <div class="info-item-name">{{ resource.name }}</div>
+            <div class="info-item-concept"><b> Drug Component: </b> {{resource.concept}}</div>
+        </div>
+
+        <loader ng-show="isLoading.dbpedia"></loader>
+
+        <div class="dbpedia" ng-show="!isLoading.dbpedia">
+            <div class="dbpedia-image float-left">
+                <div><img class="dbpedia-img" ng-src="assets/images/no-image-drug.svg"/></div>
+            </div>
+            <div class="dbpedia-abstract flex2">
+                <div ng-show="!item.abstract"> No description available</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+
+        <div class="flex">
+
+            <div class="small-list space-right flex1">
+                <div class="small-list-title">Name Variants</div>
+                <div class="space-top-bottom"></div>
+                <loader-small ng-show="resource.drug.isLoading.variants"></loader-small>
+                <div class="small-list-content">
+                    <div class="small-list-item cursor"
+                         ng-click="resource.Get('DRUG',variant,resource.concept)"
+                         ng-repeat="variant in resource.drug.variants track by $index">
+                        <div class="small-list-item-image float-left">
+                            <img class="small-list-item-img" src="assets/images/circle-blue.svg"/>
+                        </div>
+                        <div class="small-list-item-name float-left max80"> {{ variant }}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div> <!-- end of small list -->
+
+            <div class="small-list space-right flex1">
+                <div class="small-list-title">Derived from Plant Species</div>
+                <div class="space-top-bottom"></div>
+                <loader-small ng-show="resource.drug.isLoading.pDrugs"></loader-small>
+                <div class="small-list-content">
+                    <div class="small-list-item cursor"
+                         ng-repeat="plant in resource.drug.plants track by $index"
+                    >
+                        <div class="small-list-item-image float-left">
+                            <img class="small-list-item-img" src="assets/images/circle-green.svg"/>
+                        </div>
+                        <div class="small-list-item-name float-left max80">
+                            <div ng-click="resource.Get('PLANT',plant.name,plant.name)"> {{ plant.name }}</div>
+                            <div ng-repeat="plantVariant in plant.variants track by $index">
+                                <div class="inline">
+                                    <img class="small-list-item-img" src="assets/images/circle-green-light.svg"/>
+                                </div>
+                                <div class="small-list-item-name inline space-left-top-05"
+                                     ng-click="resource.Get('PLANT',plantVariant,plant.name)"> {{ plantVariant }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div> <!-- end of small list -->
+
+            <div class="small-list space-right flex1">
+                <div class="small-list-title">Uses</div>
+                <div class="space-top-bottom"></div>
+                <loader-small ng-show="resource.drug.isLoading.uses"></loader-small>
+                <div class="small-list-content">
+                    <div class="small-list-item" ng-repeat="use in resource.drug.uses track by $index">
+                        <div class="small-list-item-image float-left">
+                            <img class="small-list-item-img" src="assets/images/circle-orange.svg"/>
+                        </div>
+                        <div class="small-list-item-name float-left max80"> {{ use }}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div> <!-- end of small list -->
+
+
+            <div class="clear"></div>
+
+        </div>
+
+        <div>
+            <div class="small-list  flex1">
+                <div class="small-list-title">Mentioned In Reference Sources</div>
+                <div class="space-top-bottom"></div>
+                <loader-small ng-show="resource.drug.isLoading.sources"></loader-small>
+                <div class="small-list-content">
+                    <div class="small-list-item"
+                         ng-click="resource.Get('SOURCE',source,null)"
+                         ng-repeat="source in resource.drug.sources track by $index">
+                        <div class="small-list-item-image float-left">
+                            <img class="small-list-item-img" src="assets/images/circle-yellow.svg"/>
+                        </div>
+                        <div class="small-list-item-name float-left max80"> {{ source }}</div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div> <!-- end of small list -->
+        </div>
+
+
+        <div>
+            <div class="small-list-title">References</div>
+
+            <div class="space-top-bottom"></div>
+            <loader-small ng-show="resource.drug.isLoading.references"></loader-small>
+
+            <div class="small-list-content">
+
+                <div class="reference" ng-repeat="reference in resource.drug.references track by $index">
+
+                    <div class="small-list-item inline">
+                        <div class="small-list-item-image inline">
+                            <img class="small-list-item-img" src="assets/images/circle-blue.svg"/>
+                        </div>
+                        <div class="small-title inline"> Name Variant:</div>
+                        <div class="small-list-item-name inline"> {{reference.name.value}}</div>
+                        <div class="clear"></div>
+                    </div>
+
+
+                    <div class="small-list-item inline space-left" ng-show="reference.language">
+                        <div class="small-title inline"> Language:</div>
+                        <div class="small-list-item-name inline"> {{reference.language.value}}</div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="small-list-item inline space-left" ng-show="reference.location">
+                        <div class="small-title inline"> Location:</div>
+                        <div class="small-list-item-name inline">
+                            {{reference.location.value}} ({{reference.latitude.value}}, {{reference.longtitude.value}})
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="small-list-item inline" ng-show="reference.plantVariant">
+                        <div class="small-list-item-image inline">
+                            <img class="small-list-item-img" src="assets/images/circle-green.svg"/>
+                        </div>
+                        <div class="small-title inline"> Produced by:</div>
+                        <div class="small-list-item-name inline">
+                            {{ reference.plantVariant.value }}
+                            (
+                            <div class="small-title inline"> Plant Species:</div>
+                            {{ reference.plantName.value }} )
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+
+                    <div class="clear"></div>
+
+
+                    <div class="small-list-item inline">
+                        <div class="small-list-item-image inline" ng-show="reference.referenceSourceName">
+                            <img class="small-list-item-img" src="assets/images/circle-yellow.svg"/>
+                        </div>
+                        <div class="small-title inline"> Reference Source:</div>
+                        <div class="small-list-item-name inline"> {{ reference.referenceSourceName.value }}</div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="clear"></div>
+
+                    <div class="small-list-item inline space-left" ng-show="reference.referenceSourceLanguage">
+                        <div class="small-title inline"> Publication Language:</div>
+                        <div class="small-list-item-name inline"> {{ reference.referenceSourceLanguage.value }}</div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="small-list-item inline space-left" ng-show="reference.referenceSourceLocation">
+                        <div class="small-title inline"> Publication Location:</div>
+                        <div class="small-list-item-name inline"> {{ reference.referenceSourceLocation.value }}</div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="small-list-item inline space-left" ng-show="reference.sourceDate">
+                        <div class="small-title inline"> Publication Date:</div>
+                        <div class="small-list-item-name inline"> {{ reference.referenceSourceDate.value }}</div>
+                        <div class="clear"></div>
+                    </div>
+
+
+                    <div class="small-list-item inline space-left" ng-show="reference.id">
+                        <div class="small-title inline"> ID:</div>
+                        <div class="small-list-item-name inline"> {{reference.id.value}}</div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="small-list-item inline space-left" ng-show="reference.lineNumber">
+                        <div class="small-title inline"> LineNo:</div>
+                        <div class="small-list-item-name inline"> {{reference.lineNumber.value}}</div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="small-list-item inline space-left" ng-show="reference.barcode">
+                        <div class="small-title inline"> Barcode:</div>
+                        <div class="small-list-item-name inline"> {{reference.barcode.value}}</div>
+                        <div class="clear"></div>
+                    </div>
+
+
+                    <div class="clear"></div>
+
+                </div>
+
+
+                <div class="clear"></div>
+
+
+            </div>
+
+        </div>
+
     </div>
     <div class="clear"></div>
 </div> <!-- end of plants -->

@@ -1,27 +1,20 @@
-(function(){
+(function () {
+  "use strict";
 
-	"use strict";
-    
-    angular.module("TIMECAPSULE").directive("loader", loaderDirective);
-    
-    function loaderDirective()
-    {
+  angular.module("TIMECAPSULE").directive("loader", loaderDirective);
 
-        return {
-                restrict: "E",
-                templateUrl: "app/directives/loader/loader.template.html",
-                controller: loaderController,
-                scope:{ message: "@?" }
-                };
-        
-        function loaderController($scope)
-        {
-            $scope.text = "";
-        }
+  function loaderDirective() {
+    return {
+      restrict: "E",
+      templateUrl: "app/directives/loader/loader.template.html",
+      controller: loaderController,
+      scope: { message: "@?" },
+    };
+
+    function loaderController($scope) {
+      $scope.text = "";
     }
-     
-    
+  }
 })();
 
- 
  

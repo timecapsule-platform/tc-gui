@@ -1,23 +1,15 @@
-(function(){
+(function () {
+  "use strict";
 
-	"use strict";
-    
-    angular.module("TIMECAPSULE").directive("activityRow", activityRowDirective);
-    
-    function activityRowDirective()
-    {
+  angular.module("TIMECAPSULE").directive("activityRow", activityRowDirective);
 
-        return {
-                restrict: "E",
-                templateUrl: "app/pages/dashboard/directives/activity-row.template.html",
-                scope: { activity: "=" }
-                };
-
-    }
-     
-   
-
+  function activityRowDirective() {
+    return {
+      restrict: "E",
+      templateUrl: "app/pages/dashboard/directives/activity-row.template.html",
+      scope: { activity: "=" },
+    };
+  }
 })();
 
- 
  

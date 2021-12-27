@@ -1,21 +1,16 @@
-(function(){
+(function () {
+  "use strict";
 
-	"use strict";
-    
-    angular.module("TIMECAPSULE").directive("createButton", createButtonDirective);
-    
-    function createButtonDirective()
-    {
+  angular
+    .module("TIMECAPSULE")
+    .directive("createButton", createButtonDirective);
 
-        return {
-                restrict: "E",
-                templateUrl: "app/directives/create-button/create-button.template.html"
-                };
-
-    }
-     
-    
+  function createButtonDirective() {
+    return {
+      restrict: "E",
+      templateUrl: "app/directives/create-button/create-button.template.html",
+    };
+  }
 })();
 
- 
  

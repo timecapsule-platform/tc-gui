@@ -1,29 +1,28 @@
 <div id="banner" ng-controller="bannerController">
-     
-    <div id="logo" ng-click="toggleMenu()">  <img id="logo-img" src="assets/images/logo.svg"  /> </div>
 
-    <div id="user-menu-icon" ng-click="toggleUserMenu();"> 
-        <img id="user-menu-icon-img" src="assets/images/user-menu.svg" alt="user-menu"/> 
+    <div id="logo" ng-click="toggleMenu()"><img id="logo-img" src="assets/images/logo.svg"/></div>
+
+    <div id="user-menu-icon" ng-click="toggleUserMenu();">
+        <img alt="user-menu" id="user-menu-icon-img" src="assets/images/user-menu.svg"/>
     </div>
-    
+
     <ng-include src="'app/shared/user-menu/user-menu.html'"></ng-include>
-    
-    <div id="company" >
-        <div id="company-icon"><img id="company-icon-img" src="assets/images/circleGreen.svg" alt="user"/></div>
+
+    <div id="company">
+        <div id="company-icon"><img alt="user" id="company-icon-img" src="assets/images/circleGreen.svg"/></div>
         <div id="company-content">
-            <div id="company-name">Welcome </div>
+            <div id="company-name">Welcome</div>
             <div id="company-deposit">{{ auth.user.name }} {{ auth.user.surname}}</div>
         </div>
     </div><!-- end of company -->
-    
- 
-    <ng-include src="'app/shared/timecapsules/timecapsules.html'" ></ng-include>
-     
-    
+
+
+    <ng-include src="'app/shared/timecapsules/timecapsules.html'"></ng-include>
+
+
     <ng-include src="'app/shared/help/help.html'"></ng-include>
-    
-    
-    
+
+
     <!--
     <div id="banner-notifications"><img id="banner-notifications-img" src="assets/images/calendarIcon.svg" alt="orders"/></div>
     <div id="banner-orders"><img id="banner-orders-img" src="assets/images/calendarIcon.svg" alt="orders"/></div>

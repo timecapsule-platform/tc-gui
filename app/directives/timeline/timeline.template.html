@@ -1,12 +1,11 @@
- 
 <div class="minimize float-right" ng-click="isMinimized = !isMinimized">
-    <img class="img15x" src="assets/images/minimize.svg" ng-show="isMinimized" />
-    <img class="img15x" src="assets/images/minimize-red.svg" ng-show="!isMinimized" />
+    <img class="img15x" ng-show="isMinimized" src="assets/images/minimize.svg"/>
+    <img class="img15x" ng-show="!isMinimized" src="assets/images/minimize-red.svg"/>
 </div>
-<div class="visualization-title">{{title}} </div>
+<div class="visualization-title">{{title}}</div>
 
 <div class="visualization-content" ng-show="!isMinimized">
-    
+
     <div class="timeline"></div>
     <br/><br/>
     <div class="graph2d"></div>
@@ -15,11 +14,11 @@
 
         <div class="visualization-chart flex1">
             <div class="chart inline">
-                <chart ng-if="pieConcepts && pieConcepts.length" 
-                       data="piePercentages" 
-                       colors="colors" 
+                <chart colors="colors"
+                       data="piePercentages"
                        labels="pieConcepts"
-                       >
+                       ng-if="pieConcepts && pieConcepts.length"
+                >
                 </chart>
             </div>
         </div>
@@ -30,15 +29,15 @@
             <div class="visualization-numbers-content">
                 <div class="timeline-concept" ng-repeat="concept in pieConcepts">
                     <div class="timeline-concept-square square inline-top" ng-class="squares[$index]"></div>
-                    <div class="timeline-concept-name inline-top"> {{concept}} </div>
-                    <div class="timeline-concept-name inline-top">  [ {{ pieOccurences[$index] }} Occurrences ] </div>
-                    <div class="timeline-concept-name float-right"> {{ piePercentages[$index] | number : 1}} % </div>
-                    <div class="clear"> </div>
+                    <div class="timeline-concept-name inline-top"> {{concept}}</div>
+                    <div class="timeline-concept-name inline-top"> [ {{ pieOccurences[$index] }} Occurrences ]</div>
+                    <div class="timeline-concept-name float-right"> {{ piePercentages[$index] | number: 1}} %</div>
+                    <div class="clear"></div>
                 </div>
             </div>
 
         </div>
 
     </div>
-    
+
 </div>

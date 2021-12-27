@@ -1,16 +1,18 @@
-<input type="hidden" class="datePicker" ng-model="date">
+<input class="datePicker" ng-model="date" type="hidden">
 <div class="selector-container float-left">
     <div class="selector">
         <div class="selector-title" ng-show="title">{{ title }}</div>
-        <div class="date-box" ng-click="showDatepicker()"  
-             ng-class="{ 'date-box-enabled' : isEnabled(), 'date-box-disabled': !isEnabled() }">
-            <div class="date-box-icon"> 
-                <img ng-show="isEnabled()" class="date-box-icon-img" src="assets/images/calendarGrayMedium.svg" alt="calendar"/>
-                <img ng-show="!isEnabled()" class="date-box-icon-img" src="assets/images/calendar-disabled.svg" alt="calendar"/>
+        <div class="date-box" ng-class="{ 'date-box-enabled' : isEnabled(), 'date-box-disabled': !isEnabled() }"
+             ng-click="showDatepicker()">
+            <div class="date-box-icon">
+                <img alt="calendar" class="date-box-icon-img" ng-show="isEnabled()"
+                     src="assets/images/calendarGrayMedium.svg"/>
+                <img alt="calendar" class="date-box-icon-img" ng-show="!isEnabled()"
+                     src="assets/images/calendar-disabled.svg"/>
             </div>
-            <div class="date-box-text" ng-show="!isDateSet()"> Επιλογή Ημερομηνίας </div>
-            <div class="date-box-text" ng-show="isDateSet()"> {{ date | date: 'dd/MM/yyyy' }} </div>
-            
+            <div class="date-box-text" ng-show="!isDateSet()"> Επιλογή Ημερομηνίας</div>
+            <div class="date-box-text" ng-show="isDateSet()"> {{ date | date: 'dd/MM/yyyy' }}</div>
+
             <div class="clear"></div>
         </div>
     </div>

@@ -1,8 +1,9 @@
 <div class="selector-container float-left" ng-click="showDatasetPopup()">
     <div class="selector">
         <div class="selector-title" ng-if="title">{{ title }}</div>
-        <div class="selector-box" ng-class="{ 'selector-box-enabled' : isEnabled(), 'selector-box-disabled': !isEnabled() }"> 
-            <span ng-show="selectedExists()" class="bold"> {{ selected.name }} </span>
+        <div class="selector-box"
+             ng-class="{ 'selector-box-enabled' : isEnabled(), 'selector-box-disabled': !isEnabled() }">
+            <span class="bold" ng-show="selectedExists()"> {{ selected.name }} </span>
             <span ng-show="!selectedExists()"> {{ boxText}} </span>
         </div>
     </div>

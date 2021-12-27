@@ -1,18 +1,17 @@
 <div class="popup-message">
-    
-    <div class="popup-message-icon"  ng-show="isType('error')">
-        <img class="popup-message-img" src="assets/images/alertIcon.svg" />
+
+    <div class="popup-message-icon" ng-show="isType('error')">
+        <img class="popup-message-img" src="assets/images/alertIcon.svg"/>
     </div>
-    
+
     <div class="popup-message-icon" ng-show="isType('success')">
-        <img class="popup-message-img" src="assets/images/successIcon.svg" />
+        <img class="popup-message-img" src="assets/images/successIcon.svg"/>
     </div>
-    
+
     <div class="popup-message-text">{{message}}</div>
-    
+
     <div class="popup-buttons">
         <div class="popup-button-cancel" ng-click="close()">OK</div>
     </div>
 
 </div>
- 

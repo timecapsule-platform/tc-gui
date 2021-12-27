@@ -1,41 +1,42 @@
- 
-
-<div id="sources" class="ui-content-div">
+<div class="ui-content-div" id="sources">
 
     <div class="page-header">Cargo &amp; Trade</div>
-    
+
     <loader ng-show="isLoading.page"></loader>
-    
-    
-    
+
+
     <div class="page-content flex">
-        
+
         <div class="data-list flex1">
-            
+
             <div class="data-list-title">Cargo Index</div>
-            
+
             <div id="cargo-filters">
-            
-                <div class="cargo-filter float-left"  ng-class="{ 'cargo-filter-selected':cargoFilter.all }"
-                     ng-click="setCargoFilter('All')">All Cargo</div>
+
+                <div class="cargo-filter float-left" ng-class="{ 'cargo-filter-selected':cargoFilter.all }"
+                     ng-click="setCargoFilter('All')">All Cargo
+                </div>
                 <div class="cargo-filter float-left" ng-class="{ 'cargo-filter-selected':cargoFilter.plants }"
-                     ng-click="setCargoFilter('Plant')">Plants</div>
+                     ng-click="setCargoFilter('Plant')">Plants
+                </div>
                 <div class="cargo-filter float-left" ng-class="{ 'cargo-filter-selected':cargoFilter.animals }"
-                     ng-click="setCargoFilter('Animal')">Animals</div>
+                     ng-click="setCargoFilter('Animal')">Animals
+                </div>
                 <div class="cargo-filter float-left" ng-class="{ 'cargo-filter-selected':cargoFilter.minerals }"
-                     ng-click="setCargoFilter('Mineral')">Minerals</div>
+                     ng-click="setCargoFilter('Mineral')">Minerals
+                </div>
                 <div class="clear"></div>
             </div>
-            
-            <search-box  search-text="filters.search" search-label="Search Cargo"></search-box>
-            
-            <div class="clear"> </div>
-            
+
+            <search-box search-label="Search Cargo" search-text="filters.search"></search-box>
+
+            <div class="clear"></div>
+
             <div class="data-list-content">
-                <div class="data-list-item" 
-                     ng-class=" {'data-list-item-selected': isSelected($item) }" 
-                     ng-repeat="$item in items | orderBy: name |  filter: filters.search | filter: filterCargo track by $index"
-                     ng-click="selectItem($item)">
+                <div class="data-list-item"
+                     ng-class=" {'data-list-item-selected': isSelected($item) }"
+                     ng-click="selectItem($item)"
+                     ng-repeat="$item in items | orderBy: name |  filter: filters.search | filter: filterCargo track by $index">
                     <div class="data-list-item-dot float-left">
                         <img class="img15x" ng-show="$item.type == 'Other'" src="assets/images/cargo.svg"/>
                         <img class="img15x" ng-show="$item.type == 'Plant'" src="assets/images/cargo-plant.svg"/>
@@ -43,84 +44,90 @@
                         <img class="img15x" ng-show="$item.type == 'Mineral'" src="assets/images/cargo-mineral.svg"/>
                     </div>
                     <div class="data-list-item-name float-left">{{ $item.name }}</div>
-                    <div class="clear"> </div> 
+                    <div class="clear"></div>
                 </div>
-                
-            </div>    
+
+            </div>
 
         </div> <!-- end of data list -->
-        
+
         <div class="item-info flex2">
-            
+
             <div class="item-info-title">
                 <div class="item-info-title-image float-left">
-                    <img class="item-info-title-img" src="assets/images/filters.svg" />
+                    <img class="item-info-title-img" src="assets/images/filters.svg"/>
                 </div>
                 <div class="item-info-title-text float-left">Filters</div>
                 <div class="clear"></div>
             </div>
-            
+
             <div id="qfilters">
                 <div class="qfilter inline cursor" ng-click="showShipsPopup()">
-                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/ship.svg" /></div>
-                    <div class="qfilter-text inline"> Ship: </div>
+                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/ship.svg"/></div>
+                    <div class="qfilter-text inline"> Ship:</div>
                     <div class="qfilter-data inline" ng-show="!filters.ship.selected">All Ships</div>
-                    <div class="qfilter-data inline" ng-show="filters.ship.selected">{{filters.ship.selected.name}}</div>
+                    <div class="qfilter-data inline" ng-show="filters.ship.selected">{{filters.ship.selected.name}}
+                    </div>
                 </div>
                 <div class="qfilter inline cursor" ng-click="showDeparturesPopup()">
-                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/anchor.svg" /></div>
-                    <div class="qfilter-text inline"> Departure: </div>
+                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/anchor.svg"/></div>
+                    <div class="qfilter-text inline"> Departure:</div>
                     <div class="qfilter-data inline" ng-show="!filters.departure.selected">All Places</div>
-                    <div class="qfilter-data inline" ng-show="filters.departure.selected">{{filters.departure.selected.name}}</div>
+                    <div class="qfilter-data inline" ng-show="filters.departure.selected">
+                        {{filters.departure.selected.name}}
+                    </div>
                 </div>
                 <div class="qfilter inline cursor" ng-click="showArrivalsPopup()">
-                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/anchor.svg" /></div>
-                    <div class="qfilter-text inline"> Arrival: </div>
+                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/anchor.svg"/></div>
+                    <div class="qfilter-text inline"> Arrival:</div>
                     <div class="qfilter-data inline" ng-show="!filters.arrival.selected">All Places</div>
-                    <div class="qfilter-data inline" ng-show="filters.arrival.selected">{{filters.arrival.selected.name}}</div>
+                    <div class="qfilter-data inline" ng-show="filters.arrival.selected">
+                        {{filters.arrival.selected.name}}
+                    </div>
                 </div>
                 <div class="qfilter inline cursor" ng-click="showDatePopup()">
-                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/calendar.svg" /></div>
-                    <div class="qfilter-text inline"> Period: </div>
+                    <div class="qfilter-icon inline"><img class="img1x" src="assets/images/calendar.svg"/></div>
+                    <div class="qfilter-text inline"> Period:</div>
                     <div class="qfilter-data inline" ng-show="!filters.date">All Date Periods</div>
-                    <div class="qfilter-data inline" ng-show="filters.date">{{ filters.date.from }} - {{ filters.date.to}}</div>
+                    <div class="qfilter-data inline" ng-show="filters.date">{{ filters.date.from }} -
+                        {{ filters.date.to}}
+                    </div>
                 </div>
-                
+
             </div>
-            
-            
+
+
             <div class="item-info-title">
                 <div class="item-info-title-image float-left">
-                    <img class="item-info-title-img" src="assets/images/results.svg" />
+                    <img class="item-info-title-img" src="assets/images/results.svg"/>
                 </div>
                 <div class="item-info-title-text float-left">Results</div>
                 <div class="clear"></div>
             </div>
-            
-             
-            
+
+
             <loader ng-show="isLoading.results"></loader>
-            
+
             <div id="cargo-results" ng-show="!isLoading.results">
-                
-                <div class="references-total space-top-bottom" ng-show="resultsCount"> 
-                    <span class="small-list-title">Total:</span> 
+
+                <div class="references-total space-top-bottom" ng-show="resultsCount">
+                    <span class="small-list-title">Total:</span>
                     <b>{{ resultsCount }}</b> Results
                 </div>
-                
-                <div class="cargo-result cursor" ng-repeat="result in results" ng-click="showDetailsPopup(result)">
+
+                <div class="cargo-result cursor" ng-click="showDetailsPopup(result)" ng-repeat="result in results">
                     <div class="cargo-voyage">
-                        <div class="small-list-item-image inline"> 
-                            <img class="img1x inline-top" src="assets/images/circle-cyan.svg"/> 
+                        <div class="small-list-item-image inline">
+                            <img class="img1x inline-top" src="assets/images/circle-cyan.svg"/>
                         </div>
-                        {{ result.departure.value }}  &rarr;  {{ result.arrival.value }}
+                        {{ result.departure.value }} &rarr; {{ result.arrival.value }}
                     </div>
                     <div class="cargo-ship" ng-show="result.ship">
-                        <div class="qfilter-icon inline"><img class="img1x" src="assets/images/ship.svg" /></div>
-                        <span class="cargo-result-subtitle space-left">Ship:</span> {{ result.ship.value }} 
+                        <div class="qfilter-icon inline"><img class="img1x" src="assets/images/ship.svg"/></div>
+                        <span class="cargo-result-subtitle space-left">Ship:</span> {{ result.ship.value }}
                     </div>
                     <div class="cargo-place">
-                        <div class="qfilter-icon inline"><img class="img1x" src="assets/images/anchor.svg" /></div>
+                        <div class="qfilter-icon inline"><img class="img1x" src="assets/images/anchor.svg"/></div>
                         <span class="space-left" ng-show="result.departure"> 
                             <span class="cargo-result-subtitle">Departure: </span> {{ result.departure.value }}  
                         </span>
@@ -136,29 +143,27 @@
                             {{ result.dateArrival.value | amDateFormat: 'DD MMMM YYYY' }} 
                         </span>
                     </div>
-                    
+
                     <div class="cargo-footer align-right">+ click to see voyage details</div>
                 </div>
-                
+
                 <div class="space-top-bottom"></div>
-                <loader-small  ng-show="isLoading.resultsAll"> </loader-small>
-                <div class="results-more center cursor" 
-                     ng-show="!isLoading.resultsAll && results && results.length && resultsCount > resultsLimit && resultsCount > results.length" 
+                <loader-small ng-show="isLoading.resultsAll"></loader-small>
+                <div class="results-more center cursor"
                      ng-click="getAllCargoVoyages(item.name)"
-                     >
-                Load All
+                     ng-show="!isLoading.resultsAll && results && results.length && resultsCount > resultsLimit && resultsCount > results.length"
+                >
+                    Load All
                 </div>
-                
-                
+
+
             </div> <!-- end of results -->
-            
-            
-            
-            
+
+
         </div>
-        
+
     </div>
-    
+
     <div class="clear"></div>
-    
+
 </div> <!-- end of reference sources -->

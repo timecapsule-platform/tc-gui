@@ -1,80 +1,79 @@
 <div class="popup">
-     
-    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'> 
-        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'> 
+
+    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'>
+        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'>
     </div>
-    
+
     <div class="popup-title" ng-show="!message.exists()">
         <div class='popup-header'>Query Builder</div>
     </div>
 
     <loader ng-show="isLoading.delete"></loader>
 
-    
+
     <div class="popup-content" ng-show="!isLoading.delete && !message.exists()">
-        
-        <div class="space-top-bottom"> </div>
-        
-      
-        
+
+        <div class="space-top-bottom"></div>
+
+
         <div id="query-wizard">
-            
-            <div id="query-wizard-select" class="query-wizard-panel float-left" ng-show="query.state.select">
-                <div class="query-wizard-panel-title"> Show me: </div>
-                <div class="query-wizard-panel-subtitle"> (Select one) </div>
+
+            <div class="query-wizard-panel float-left" id="query-wizard-select" ng-show="query.state.select">
+                <div class="query-wizard-panel-title"> Show me:</div>
+                <div class="query-wizard-panel-subtitle"> (Select one)</div>
                 <div class="query-var space-bottom"
-                     ng-repeat="item in query.options" 
+                     ng-class="item.bg"
                      ng-click="queryAddSelect(item)"
-                     ng-class="item.bg">
+                     ng-repeat="item in query.options">
                     {{item.name}}
                 </div>
             </div>
-            
-            <div id="query-wizard-from" class="query-wizard-panel float-left" ng-show="query.state.from">
-                <div class="query-wizard-panel-title"> Which are (is) ...  </div>
-                <div class="query-wizard-panel-subtitle"> (Select one) </div>
+
+            <div class="query-wizard-panel float-left" id="query-wizard-from" ng-show="query.state.from">
+                <div class="query-wizard-panel-title"> Which are (is) ...</div>
+                <div class="query-wizard-panel-subtitle"> (Select one)</div>
                 <div class="space-bottom"
                      ng-repeat="item in query.fromOptions">
                     <div class="query-text inline">{{item.text}}</div>
-                    <div class="query-var inline"  ng-click="queryAddFrom(item)" ng-class="item.bg" >{{item.name}}</div>    
+                    <div class="query-var inline" ng-class="item.bg" ng-click="queryAddFrom(item)">{{item.name}}</div>
                 </div>
             </div>
-            
-            <div id="query-wizard-filters" class="query-wizard-panel float-left" ng-show="query.state.filters">
-                <div class="query-wizard-panel-title"> Filtered by:  </div>
-                <div class="query-wizard-panel-subtitle"> (Select one or more) </div>
+
+            <div class="query-wizard-panel float-left" id="query-wizard-filters" ng-show="query.state.filters">
+                <div class="query-wizard-panel-title"> Filtered by:</div>
+                <div class="query-wizard-panel-subtitle"> (Select one or more)</div>
                 <div class="space-bottom"
                      ng-repeat="item in query.filterOptions">
                     <div class="query-text inline">{{item.text}}</div>
-                    <div class="query-var inline"  ng-click="queryAddFilter(item)" ng-class="item.bg" >{{item.name}}</div>    
+                    <div class="query-var inline" ng-class="item.bg" ng-click="queryAddFilter(item)">{{item.name}}</div>
                 </div>
             </div>
-            
-            
-            <div id="query-wizard-criteria" class="query-wizard-panel float-left" ng-show="query.state.criteria">
-                <div class="query-wizard-panel-title"> Which one(s) ?  </div>
+
+
+            <div class="query-wizard-panel float-left" id="query-wizard-criteria" ng-show="query.state.criteria">
+                <div class="query-wizard-panel-title"> Which one(s) ?</div>
                 <div ng-repeat="item in query.criteriaOptions">
                     <div class="query-text inline">{{item.text}}</div>
-                    <div class="query-var inline" ng-class="item.bg" >{{item.name}}</div>    
+                    <div class="query-var inline" ng-class="item.bg">{{item.name}}</div>
                 </div>
             </div>
-            
+
         </div> <!-- end of query wizard -->
-         
-       
-        <div class="clear"> </div>
-        
-        <div class="space-top-bottom"> </div>
-        
+
+
+        <div class="clear"></div>
+
+        <div class="space-top-bottom"></div>
+
         <div class="popup-buttons">
             <div class="popup-button-cancel" ng-click="closeThisDialog()">Cancel</div>
         </div>
-        
+
     </div> <!-- end of popup content -->
-    
-    <popup-message type="error" message="message.text.error" close="closeThisDialog" ng-show="message.isError()">
-    </popup-message> 
-    <popup-message type="success" message="message.text.success" close="closeThisDialog" ng-show="message.isSuccess()">
-    </popup-message> 
-     
+
+    <popup-message close="closeThisDialog" message="message.text.error" ng-show="message.isError()" type="error">
+    </popup-message>
+    <popup-message close="closeThisDialog" message="message.text.success" ng-show="message.isSuccess()" type="success">
+    </popup-message>
+
 </div> <!-- end of popup -->

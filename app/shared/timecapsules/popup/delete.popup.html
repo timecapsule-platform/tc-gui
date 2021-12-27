@@ -1,31 +1,31 @@
 <div class="popup">
-    
-    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'> 
-        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'> 
+
+    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'>
+        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'>
     </div>
-    
+
     <div class="popup-title" ng-show="!message.exists()">
         <div class='popup-header'>Delete Time Capsule</div>
     </div>
 
-    <loader  ng-show="isLoading"></loader>
+    <loader ng-show="isLoading"></loader>
 
-     
+
     <div class="popup-content" ng-show="!isLoading && !message.exists()">
-        
+
         <div class="center"><img class="popup-delete-img" src="assets/images/alertIcon.svg"/></div>
         <div class="popup-message-text">Are you sure you want to delete this Time Capsule ?</div>
-        
+
         <div class="popup-buttons">
             <div class="popup-button-cancel" ng-click="closeThisDialog()">Cancel</div>
             <div class="popup-button-delete" ng-click="delete()">Yes, Delete This Time Capsule!</div>
         </div>
-        
+
     </div> <!-- end of popup content -->
-    
-    <popup-message type="error" message="message.text.error" close="closeThisDialog" ng-show="message.isError()">
-    </popup-message> 
-    <popup-message type="success" message="message.text.success" close="closeThisDialog" ng-show="message.isSuccess()">
-    </popup-message> 
-     
+
+    <popup-message close="closeThisDialog" message="message.text.error" ng-show="message.isError()" type="error">
+    </popup-message>
+    <popup-message close="closeThisDialog" message="message.text.success" ng-show="message.isSuccess()" type="success">
+    </popup-message>
+
 </div> <!-- end of popup -->

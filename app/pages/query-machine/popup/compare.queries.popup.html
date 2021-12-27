@@ -1,66 +1,65 @@
 <div class="popup">
-     
-    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'> 
-        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'> 
+
+    <div class='popup-close-icon float-right' ng-click='closeThisDialog()'>
+        <img class="popup-close-icon-img" src='assets/images/closeIcon.svg'>
     </div>
-    
+
     <div class="popup-title" ng-show="!message.exists()">
         <div class='popup-header'>Compare</div>
     </div>
 
-    
 
-    
     <div class="popup-content">
-        
-        <div class="space-top-bottom"> </div>
-        
-         <!------------------------------------------------------------------------------->   
+
+        <div class="space-top-bottom"></div>
+
+        <!------------------------------------------------------------------------------->
         <!--------------------------- COMPARE ------------------------------------------->
-        <!------------------------------------------------------------------------------->   
-            
+        <!------------------------------------------------------------------------------->
+
         <div id="compare-queries">
-            
+
             <div class="white-btn float-right" ng-click="clearCompareQueries()">Clear</div>
-            <div class="white-btn float-right" ng-click="addQueryToCompare()">Add Query</div> 
-            <div class="purple-btn float-right space-right" 
+            <div class="white-btn float-right" ng-click="addQueryToCompare()">Add Query</div>
+            <div class="purple-btn float-right space-right"
                  ng-click="showComparePopup()"
-                 ng-show="compare.queries.length && compare.queries.length > 1"> Compare </div> 
-            
+                 ng-show="compare.queries.length && compare.queries.length > 1"> Compare
+            </div>
+
             <div class="item-info-title">
                 <div class="item-info-title-image float-left">
-                    <img class="item-info-title-img" src="assets/images/compare.svg" />
+                    <img class="item-info-title-img" src="assets/images/compare.svg"/>
                 </div>
                 <div class="item-info-title-text float-left">Compare</div>
                 <div class="clear"></div>
             </div>
-            
-            <div id="compare-empty"  ng-show="!compare.queries.length">No queries to compare</div>
-            
+
+            <div id="compare-empty" ng-show="!compare.queries.length">No queries to compare</div>
+
             <div id="compare-queries" ng-show="compare.queries.length" style="font-size:0.9em">
-                
+
                 <div class="compare-query" ng-repeat="q in compare.queries track by $index">
-                  
-                    <div id="query-criteria" class="query-var inline"  
-                         ng-show="q.criteria" ng-class="q.criteria.bg">{{q.criteria.name}}
+
+                    <div class="query-var inline" id="query-criteria"
+                         ng-class="q.criteria.bg" ng-show="q.criteria">{{q.criteria.name}}
                     </div>
-                    
-                    <div id="query-select" class="query-var inline"  ng-show="q.select" ng-class="q.select.bg">
+
+                    <div class="query-var inline" id="query-select" ng-class="q.select.bg" ng-show="q.select">
                         {{q.select.name}}
                     </div>
-                    
-                    
-                    <div class="query-text inline" ng-show="q.from && q.from.data"> {{q.from.text}} </div>
-                    <div class="query-var inline"  ng-show="q.from && q.from.data" ng-class="q.from.bg">
+
+
+                    <div class="query-text inline" ng-show="q.from && q.from.data"> {{q.from.text}}</div>
+                    <div class="query-var inline" ng-class="q.from.bg" ng-show="q.from && q.from.data">
                         <div class="query-var-icon inline-top">
                             <img class="img1x" ng-src="assets/images/{{q.from.icon}}"/>
                         </div>
-                        <div class="inline-top">{{q.from.data.name}} </div>
+                        <div class="inline-top">{{q.from.data.name}}</div>
                     </div>
-                    
-                    
-                    <span ng-show="!q.select.from.length || (q.from && q.from.data)" 
-                          ng-repeat="filter in q.filters">
+
+
+                    <span ng-repeat="filter in q.filters"
+                          ng-show="!q.select.from.length || (q.from && q.from.data)">
                         <div class="query-text inline"> {{filter.text}} </div>
                         <div class="query-var inline" ng-class="filter.bg">
                             <div class="query-var-icon inline-top">
@@ -69,23 +68,23 @@
                             <div class="inline-top">{{filter.data.name}} </div>
                         </div>
                     </span>
-                     
+
                 </div> <!-- end of query -->
-                
+
             </div> <!-- end of compare queries -->
-            
-            
+
+
         </div> <!-- end of compare -->
-        
+
         <div class="popup-buttons">
             <div class="popup-button-cancel" ng-click="closeThisDialog()">OK</div>
         </div>
-        
+
     </div> <!-- end of popup content -->
-    
-    <popup-message type="error" message="message.text.error" close="closeThisDialog" ng-show="message.isError()">
-    </popup-message> 
-    <popup-message type="success" message="message.text.success" close="closeThisDialog" ng-show="message.isSuccess()">
-    </popup-message> 
-     
+
+    <popup-message close="closeThisDialog" message="message.text.error" ng-show="message.isError()" type="error">
+    </popup-message>
+    <popup-message close="closeThisDialog" message="message.text.success" ng-show="message.isSuccess()" type="success">
+    </popup-message>
+
 </div> <!-- end of popup -->
