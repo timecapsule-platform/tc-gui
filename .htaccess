@@ -1,0 +1,12 @@
+<FilesMatch ^\..*>
+	Deny from all
+</FilesMatch>
+<FilesMatch ^package*>
+        Deny from all
+</FilesMatch>
+<FilesMatch ^README.md>
+        Deny from all
+</FilesMatch>
+<FilesMatch ^env.example.js>
+        Deny from all
+</FilesMatch>
