@@ -6,7 +6,7 @@
   DBpediaFactory.$inject = ["$http", "Global"];
 
   function DBpediaFactory($http, Global) {
-    var api = "http://dbpedia.org/sparql?query=";
+    var api = "https://dbpedia.org/sparql?query=";
     var format = "&format=json";
 
     var factory = {};
