@@ -110,7 +110,7 @@
     $scope.delete = function () {
       $scope.isLoading = true;
 
-      TimecapsulesFactory.Delete($scope.auth.user.id, $scope.item._id.$id).then(
+      TimecapsulesFactory.Delete($scope.auth.user.id, $scope.item._id.$oid).then(
         function (result) {
           $scope.isLoading = false;
 
